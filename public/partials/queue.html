@@ -1,4 +1,4 @@
-<div ng-controller="QueueCtrl">
+<div>
     <div class="container">
         <div class="col-md-8 col-md-offset-2">
 
@@ -25,18 +25,23 @@
 
             <table class="table table-striped" id="animeQueue">
                 <tr>
-                    <th>Epi #</th>
+                    <th class="col-md-1 text-center">Epi #</th>
+                    <th></th>
                     <th>Anime</th>
                 </tr>
                 <tr ng-repeat="anime in animeQueue">
-                    {{console.log(anime)}}
-
-                    <td><a href="#/anime/{{anime._id}}">{{anime.lastWatched + 1}}</a></td>
+                    <td class="text-center"><a href="#/anime/{{anime._id}}">{{anime.lastWatched + 1}}</a></td>
+                    <td>
+                        <div class="animeActions">
+                            <span>edit</span>
+                            <span ng-click="deleteAnime($index)">delete</span>
+                        </div>
+                    </td>
                     <td>{{anime.name}}</td>
                 </tr>
             </table>
 
-            <form ng-submit="addAnime()">
+            <form id="newAnimeForm" ng-submit="addAnime()">
                 <h3>Add Anime</h3>
 
                 <div class="form-group">
@@ -57,7 +62,7 @@
                            placeholder="Last Episode # watched"
                            ng-model="animeToAdd.lastWatched" />
                 </div>
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary btn-inverse">Add</button>
             </form>
         </div>
     </div>
