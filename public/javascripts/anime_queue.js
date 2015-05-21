@@ -168,7 +168,7 @@ app.controller('AnimeCtrl', [
     function($scope, animeSrv, anime) {
         $scope.anime = anime;
 
-        $scope.id = $stateParams.id;
+        $scope.id = anime._id;
 
         $scope.nextEpisode = function() {
             animeSrv.nextEpisode($scope.anime);
