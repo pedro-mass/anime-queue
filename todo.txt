@@ -1,0 +1,5 @@
+- ability to delete anime
+- ability to edit anime
+- authentication
+- validation on anime add
+- validation holes
