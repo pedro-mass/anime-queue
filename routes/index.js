@@ -62,6 +62,14 @@ router.put('/anime/:anime/previousEpisode', function(req, res, next) {
   });
 });
 
+router.put('/anime/:anime/delete', function(req, res, next) {
+  console.log('made it to the router');
 
+  req.anime.delete(function(err, anime){
+    if (err) { return next(err); }
+
+    res.json(anime);
+  });
+});
 
 module.exports = router;

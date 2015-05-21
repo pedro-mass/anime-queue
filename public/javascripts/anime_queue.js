@@ -71,6 +71,10 @@ app.controller('QueueCtrl',[
             $scope.animeToAdd = {};
         }
 
+        $scope.deleteAnime = function(animeIndex) {
+            animeSrv.delete($scope.animeQueue[animeIndex]);
+        };
+
         var isValidAnimeInfo = function(anime) {
             result = false;
 
@@ -150,6 +154,13 @@ app.factory('animeSrv', [
             return $http.put('/anime/' + anime._id + '/previousEpisode')
                 .success(function(data){
                     anime.lastWatched -= 1;
+                });
+        };
+
+        animeSrv.delete = function(anime) {
+            return $http.put('/anime/' + anime._id + '/delete')
+                .success(function(data){
+                    //anime = {};
                 });
         };
 
