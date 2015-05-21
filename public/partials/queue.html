@@ -1,0 +1,64 @@
+<div ng-controller="QueueCtrl">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
+
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#home">Anime Queue</a>
+                    </div>
+                    <div id="navbar" class="collapse navbar-collapse">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#">about</a></li>
+                        </ul>
+                    </div><!--/.nav-collapse -->
+                </div>
+            </nav>
+
+            <div class="page-header">
+                <h1>Anime Queue</h1>
+            </div>
+
+            <table class="table table-striped" id="animeQueue">
+                <tr>
+                    <th>Epi #</th>
+                    <th>Anime</th>
+                </tr>
+                <tr ng-repeat="anime in animeQueue">
+                    {{console.log(anime)}}
+
+                    <td><a href="#/anime/{{anime._id}}">{{anime.lastWatched + 1}}</a></td>
+                    <td>{{anime.name}}</td>
+                </tr>
+            </table>
+
+            <form ng-submit="addAnime()">
+                <h3>Add Anime</h3>
+
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Name"
+                           ng-model="animeToAdd.name" />
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Link"
+                           ng-model="animeToAdd.link" />
+                </div>
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Last Episode # watched"
+                           ng-model="animeToAdd.lastWatched" />
+                </div>
+                <button type="submit" class="btn btn-primary">Add</button>
+            </form>
+        </div>
+    </div>
+</div>
