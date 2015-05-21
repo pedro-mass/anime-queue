@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3d3510c1-477a-49ba-a4f3-f1e124fa0ce1" name="Default" comment="" />
+    <list default="true" id="3d3510c1-477a-49ba-a4f3-f1e124fa0ce1" name="Default" comment="">
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue.html" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue_files/angular-ui-router.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue_files/angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue_files/app.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue_files/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/Anime Queue_files/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/angular-ui-router.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/angular.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/angular.min.js.map" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/downloads/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/examples.json" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/partials/anime_view.html" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/partials/queue.html" afterPath="" />
+      <change type="DELETED" beforePath="$USER_HOME$/dev/projects/anime_queue/style.css" afterPath="" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/dev/projects/anime-queue/app.js" afterPath="$USER_HOME$/dev/projects/anime-queue/app.js" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/dev/projects/anime-queue/.idea/vcs.xml" afterPath="$USER_HOME$/dev/projects/anime-queue/.idea/vcs.xml" />
+      <change type="MODIFICATION" beforePath="$USER_HOME$/dev/projects/anime-queue/.idea/workspace.xml" afterPath="$USER_HOME$/dev/projects/anime-queue/.idea/workspace.xml" />
+    </list>
     <ignored path="anime_queue.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,74 +42,42 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/index.html">
+      <file leaf-file-name="examples.json" pinned="false" current-in-tab="true">
+        <entry file="file://$USER_HOME$/dev/projects/anime-queue/examples.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.25">
-              <caret line="10" column="24" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.44491526">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="queue.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/partials/queue.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2257182">
-              <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="anime_view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/partials/anime_view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125">
-              <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
-              <folding>
-                <element signature="e#29#93#0" expanded="false" />
-                <element signature="n#!!block;n#changeAnime#0" expanded="false" />
-                <element signature="e#985#1149#0" expanded="false" />
-                <element signature="e#1040#1113#0" expanded="false" />
-                <element signature="e#1188#1587#0" expanded="false" />
-                <element signature="e#1291#1540#0" expanded="false" />
-                <element signature="e#1332#1524#0" expanded="false" />
-                <element signature="e#1636#1999#0" expanded="false" />
-                <element signature="e#1914#1960#0" expanded="false" />
-                <element signature="e#2048#2411#0" expanded="false" />
-                <element signature="e#2151#2341#0" expanded="false" />
-                <element signature="e#2265#2327#0" expanded="false" />
-                <element signature="e#2347#2401#0" expanded="false" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$USER_HOME$/dev/projects/anime_queue" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/assets/css/style.css" />
-        <option value="$PROJECT_DIR$/assets/js/app.js" />
-        <option value="$PROJECT_DIR$/examples.txt" />
-        <option value="$PROJECT_DIR$/examples.json" />
-        <option value="$PROJECT_DIR$/style.css" />
-        <option value="$PROJECT_DIR$/index.html" />
-        <option value="$PROJECT_DIR$/partials/anime_view.html" />
-        <option value="$PROJECT_DIR$/app.js" />
-        <option value="$PROJECT_DIR$/partials/queue.html" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/assets/css/style.css" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/assets/js/app.js" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/examples.txt" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/examples.json" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/style.css" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/index.html" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/partials/anime_view.html" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/app.js" />
+        <option value="$USER_HOME$/dev/projects/anime_queue/partials/queue.html" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/package.json" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/models/Posts.js" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/app.js" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/views/pedro.ejs" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/models/Anime.js" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/routes/index.js" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/public/javascripts/anime_queue.js" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/public/stylesheets/style.css" />
+        <option value="$USER_HOME$/dev/projects/anime-queue/views/index.ejs" />
       </list>
     </option>
   </component>
@@ -104,7 +93,7 @@
     <option name="width" value="1440" />
     <option name="height" value="873" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
     <OptionsSetting value="true" id="Checkout" />
@@ -123,7 +112,7 @@
       <hideEmptyPackages />
       <abbreviatePackageNames />
       <autoscrollToSource />
-      <autoscrollFromSource />
+      <autoscrollFromSource ProjectPane="false" />
       <sortByType />
     </navigator>
     <panes>
@@ -135,14 +124,8 @@
               <option name="myItemId" value="anime_queue" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="anime_queue" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="anime_queue" />
+              <option name="myItemId" value="anime-queue" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -152,11 +135,25 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="anime_queue" />
+              <option name="myItemId" value="anime-queue" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="partials" />
+              <option name="myItemId" value="models" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="anime_queue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="anime-queue" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bin" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -169,13 +166,20 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="FullScreen" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/dev/projects/anime_queue" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$USER_HOME$/dev/projects/anime-queue/views" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/assets/css" />
-      <recent name="$PROJECT_DIR$/assets/js" />
+      <recent name="$USER_HOME$/dev/projects/anime-queue" />
+      <recent name="$USER_HOME$/dev/projects/anime-queue/public/javascripts" />
+      <recent name="$USER_HOME$/dev/projects/anime-queue/views" />
+      <recent name="$USER_HOME$/dev/projects/anime-queue/public/stylesheets" />
+      <recent name="$USER_HOME$/dev/projects/anime_queue" />
     </key>
   </component>
   <component name="RunManager">
@@ -246,7 +250,7 @@
     <layout>
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32950193" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3290653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24947146" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24947146" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -279,119 +283,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="30" selection-start-line="11" selection-start-column="30" selection-end-line="11" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/queue.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="34" column="20" selection-start-line="34" selection-start-column="20" selection-end-line="34" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#29#93#0" expanded="false" />
-            <element signature="n#!!block;n#changeAnime#0" expanded="false" />
-            <element signature="e#985#1149#0" expanded="false" />
-            <element signature="e#1040#1113#0" expanded="false" />
-            <element signature="e#1188#1587#0" expanded="false" />
-            <element signature="e#1291#1540#0" expanded="false" />
-            <element signature="e#1332#1524#0" expanded="false" />
-            <element signature="e#1636#1999#0" expanded="false" />
-            <element signature="e#1914#1960#0" expanded="false" />
-            <element signature="e#2048#2411#0" expanded="false" />
-            <element signature="e#2151#2341#0" expanded="false" />
-            <element signature="e#2265#2327#0" expanded="false" />
-            <element signature="e#2347#2401#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/queue.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#29#93#0" expanded="false" />
-            <element signature="n#!!block;n#changeAnime#0" expanded="false" />
-            <element signature="e#985#1149#0" expanded="false" />
-            <element signature="e#1040#1113#0" expanded="false" />
-            <element signature="e#1188#1587#0" expanded="false" />
-            <element signature="e#1291#1540#0" expanded="false" />
-            <element signature="e#1332#1524#0" expanded="false" />
-            <element signature="e#1636#1999#0" expanded="false" />
-            <element signature="e#1914#1960#0" expanded="false" />
-            <element signature="e#2048#2411#0" expanded="false" />
-            <element signature="e#2151#2341#0" expanded="false" />
-            <element signature="e#2265#2327#0" expanded="false" />
-            <element signature="e#2347#2401#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
-          <folding>
-            <element signature="e#29#93#0" expanded="false" />
-            <element signature="n#!!block;n#changeAnime#0" expanded="false" />
-            <element signature="e#985#1149#0" expanded="false" />
-            <element signature="e#1040#1113#0" expanded="false" />
-            <element signature="e#1188#1587#0" expanded="false" />
-            <element signature="e#1291#1540#0" expanded="false" />
-            <element signature="e#1332#1524#0" expanded="false" />
-            <element signature="e#1636#1999#0" expanded="false" />
-            <element signature="e#1914#1960#0" expanded="false" />
-            <element signature="e#2048#2411#0" expanded="false" />
-            <element signature="e#2151#2341#0" expanded="false" />
-            <element signature="e#2265#2327#0" expanded="false" />
-            <element signature="e#2347#2401#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.41192052">
@@ -399,62 +290,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/examples.json">
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/bin/www">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07968128">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.25">
-          <caret line="10" column="24" selection-start-line="10" selection-start-column="23" selection-end-line="10" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/partials/anime_view.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125">
-          <caret line="13" column="43" selection-start-line="13" selection-start-column="43" selection-end-line="13" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="118" column="4" selection-start-line="118" selection-start-column="4" selection-end-line="118" selection-end-column="4" />
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
           <folding>
-            <element signature="e#29#93#0" expanded="false" />
-            <element signature="n#!!block;n#changeAnime#0" expanded="false" />
-            <element signature="e#985#1149#0" expanded="false" />
-            <element signature="e#1040#1113#0" expanded="false" />
-            <element signature="e#1188#1587#0" expanded="false" />
-            <element signature="e#1291#1540#0" expanded="false" />
-            <element signature="e#1332#1524#0" expanded="false" />
-            <element signature="e#1636#1999#0" expanded="false" />
-            <element signature="e#1914#1960#0" expanded="false" />
-            <element signature="e#2048#2411#0" expanded="false" />
-            <element signature="e#2151#2341#0" expanded="false" />
-            <element signature="e#2265#2327#0" expanded="false" />
-            <element signature="e#2347#2401#0" expanded="false" />
+            <element signature="e#21#52#0" expanded="false" />
+            <element signature="e#164#222#0" expanded="false" />
+            <element signature="e#302#332#0" expanded="false" />
+            <element signature="e#372#434#0" expanded="false" />
+            <element signature="n#!!doc;n#normalizePort#0" expanded="false" />
+            <element signature="n#!!block;n#normalizePort#0" expanded="false" />
+            <element signature="e#668#707#0" expanded="false" />
+            <element signature="e#726#767#0" expanded="false" />
+            <element signature="n#!!doc;n#onError#0" expanded="false" />
+            <element signature="n#!!block;n#onError#0" expanded="false" />
+            <element signature="e#906#928#0" expanded="false" />
+            <element signature="e#1072#1354#0" expanded="false" />
+            <element signature="n#!!doc;n#onListening#0" expanded="false" />
+            <element signature="n#!!block;n#onListening#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/partials/queue.html">
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2257182">
-          <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.37037036">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/routes/users.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/node_modules/mongoose/node_modules/bson/node_modules/bson-ext/node_modules/node-pre-gyp/node_modules/request/node_modules/har-validator/node_modules/bluebird/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37983426">
+          <caret line="497" column="161" selection-start-line="497" selection-start-column="161" selection-end-line="497" selection-end-column="161" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/models/Anime.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4233871">
+          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.3004032">
+          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+          <folding>
+            <element signature="e#142#162#0" expanded="false" />
+            <element signature="e#731#866#0" expanded="false" />
+            <element signature="e#802#862#0" expanded="false" />
+            <element signature="e#917#943#0" expanded="false" />
+            <element signature="e#1012#1124#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3821656">
+          <caret line="12" column="46" selection-start-line="12" selection-start-column="46" selection-end-line="12" selection-end-column="46" />
+          <folding>
+            <element signature="e#542#592#0" expanded="false" />
+            <element signature="e#960#1032#0" expanded="false" />
+            <element signature="e#1055#1083#0" expanded="false" />
+            <element signature="e#1147#1312#0" expanded="false" />
+            <element signature="e#1189#1308#0" expanded="false" />
+            <element signature="e#1250#1302#0" expanded="false" />
+            <element signature="e#1314#1341#0" expanded="false" />
+            <element signature="e#1413#1519#0" expanded="false" />
+            <element signature="e#1470#1515#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/public/javascripts/anime_queue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding>
+            <element signature="e#29#93#0" expanded="false" />
+            <element signature="n#!!block;n#changeAnime#0" expanded="false" />
+            <element signature="e#785#935#0" expanded="false" />
+            <element signature="e#1174#1338#0" expanded="false" />
+            <element signature="e#1229#1302#0" expanded="false" />
+            <element signature="e#1377#1776#0" expanded="false" />
+            <element signature="e#1480#1729#0" expanded="false" />
+            <element signature="e#1521#1713#0" expanded="false" />
+            <element signature="e#1825#2188#0" expanded="false" />
+            <element signature="e#2103#2149#0" expanded="false" />
+            <element signature="e#2237#2600#0" expanded="false" />
+            <element signature="e#2340#2530#0" expanded="false" />
+            <element signature="e#2454#2516#0" expanded="false" />
+            <element signature="e#2536#2590#0" expanded="false" />
+            <element signature="e#3622#4063#0" expanded="false" />
+            <element signature="e#3710#4061#0" expanded="false" />
+            <element signature="e#3847#3927#0" expanded="false" />
+            <element signature="e#3974#4054#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/public/javascripts/angular.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/public/stylesheets/bootstrap.min.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/public/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22292994">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/views/index.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="19" column="37" selection-start-line="19" selection-start-column="37" selection-end-line="19" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/public/javascripts/angular.min.js.map">
+      <provider editor-type-id="sourcemapFileViewerProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/views/anime_view.ejs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/dev/projects/anime-queue/examples.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44491526">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
           <folding />
         </state>
       </provider>

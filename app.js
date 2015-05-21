@@ -1,136 +1,70 @@
-$(document).ready(function() {
-    changeAnime("http://www.animeram.org/hajime-no-ippo/8");
+var express = require('express');
+var path = require('path');
+var favicon = require('serve-favicon');
+var logger = require('morgan');
+var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser');
+
+var app = express();
+
+
+var mongoose = require('mongoose');
+
+mongoose.connect('mongodb://localhost/anime');
+require('./models/Anime');
+
+
+
+var routes = require('./routes/index');
+var users = require('./routes/users');
+
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// uncomment after placing your favicon in /public
+//app.use(favicon(__dirname + '/public/favicon.ico'));
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+app.use('/users', users);
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
-function changeAnime(anime) {
-    $("#anime").html('<object data="' + anime + '"/>');
+// error handlers
+
+// development error handler
+// will print stacktrace
+if (app.get('env') === 'development') {
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
+    });
+  });
 }
 
-
-var app = angular.module('animeQueue', ['ui.router']);
-
-app.config([
-    '$stateProvider',
-    '$urlRouterProvider',
-    function($stateProvider, $urlRouterProvider) {
-
-        $stateProvider
-            .state('home', {
-                url: '/home',
-                templateUrl: 'partials/queue.html',
-                controller: 'QueueCtrl'
-            });
-
-        $stateProvider
-            .state('anime', {
-                url: '/anime/{id}',
-                templateUrl: 'partials/anime_view.html',
-                controller: 'AnimeCtrl'
-            });
-
-        $urlRouterProvider.otherwise('home');
-    }
-]);
-
-app.controller('QueueCtrl',[
-   '$scope', 'animeSrv',
-    function($scope, animeSrv) {
-        $scope.animeQueue = animeSrv.anime;
-
-        $scope.getAnimeLink = function(anime) {
-            link = anime.link;
-
-            if(link) {
-                link.replace('[#]', anime.lastWatched+1);
-            }
-
-            return link;
-        }
-
-        $scope.addAnime = function() {
-            if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
-
-            if ($scope.animeToAdd) {
-                $scope.animeQueue.push({
-                    name: $scope.animeToAdd.name,
-                    link: $scope.animeToAdd.link,
-                    lastWatched: parseInt($scope.animeToAdd.lastWatched)
-                });
-            }
-
-            $scope.animeToAdd = {};
-        }
-
-        var isValidAnimeInfo = function(anime) {
-            result = false;
-
-            cleanseAnimeInfo(anime);
-
-            // TODO: make sure the link has the substring we need: '[#]'
-
-            if(anime
-                && anime.name && anime.name != ''
-                && anime.link && anime.link != ''
-            ) {
-                result = true;
-            }
+// production error handler
+// no stacktraces leaked to user
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
+});
 
 
-            return result;
-        }
-
-        var cleanseAnimeInfo = function(anime) {
-            // make lastWatched an int
-            if (anime.lastWatched && anime.lastWatched != '') {
-                anime.lastWatched = parseInt(anime.lastWatched);
-
-                if (isNaN(anime.lastWatched)) {
-                    anime.lastWatched = 0;
-                }
-            } else {
-                anime.lastWatched = 0;
-            }
-        }
-    }
-]);
-
-app.factory('animeSrv', [function() {
-    var animeSrv = {
-        anime: [
-            {
-                name: "dbz kai",
-                link : "http://www.dragonballclub.net/dragonball-z-kai-episode-[#]/",
-                lastWatched : 98
-            },
-            {
-                name: "fullmetal alchmeist brotherhood",
-                link : "http://www.dubzonline.pw/fullmetal-alchemist-brotherhood-episode-[#]-english-dub/",
-                lastWatched : 20
-            },
-            {
-                name: "Hajime No Ippo",
-                link : "http://www.animeram.org/hajime-no-ippo/[#]",
-                lastWatched : 25
-            }
-        ]
-    };
-
-    return animeSrv;
-}]);
-
-app.controller('AnimeCtrl', [
-   '$scope', '$stateParams', 'animeSrv',
-    function($scope, $stateParams, animeSrv) {
-        $scope.anime = animeSrv.anime[$stateParams.id];
-
-        $scope.id = $stateParams.id;
-
-        $scope.nextEpisode = function() {
-            $scope.anime.lastWatched = $scope.anime.lastWatched + 1;
-        };
-
-        $scope.previousEpisode = function() {
-            $scope.anime.lastWatched = $scope.anime.lastWatched - 1;
-        };
-    }
-]);
+module.exports = app;

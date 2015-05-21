@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/anime_queue.iml" filepath="$PROJECT_DIR$/.idea/anime_queue.iml" />
+      <module fileurl="file://$USER_HOME$/dev/projects/anime-queue/.idea/anime_queue.iml" filepath="$USER_HOME$/dev/projects/anime-queue/.idea/anime_queue.iml" />
     </modules>
   </component>
 </project>
