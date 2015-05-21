@@ -24,3 +24,27 @@ body { padding-top: 50px; }
   width: 100%;
   height: 100%;
 }
+
+.btn-inverse {
+  color: #ffffff;
+  background-color: #222222;
+  border-color: #222222;
+}
+
+.btn-primary:hover {
+
+}
+
+.animeActions {
+  /*display: none;*/
+  font-size: 75%;
+}
+
+#animeQueue:hover .animeActions {
+  /*display: block;*/
+}
+
+.animeActions span:hover {
+  text-decoration: underline;
+  cursor:pointer;
+}
