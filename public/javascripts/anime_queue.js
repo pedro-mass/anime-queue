@@ -17,7 +17,7 @@ app.config([
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: '../../views/queue.ejs',
+                templateUrl: 'partials/queue.html',
                 controller: 'QueueCtrl',
                 resolve: {
                     postPromise: ['animeSrv', function(animeSrv){
@@ -29,8 +29,13 @@ app.config([
         $stateProvider
             .state('anime', {
                 url: '/anime/{id}',
-                templateUrl: '../../views/anime_view.ejs',
-                controller: 'AnimeCtrl'
+                templateUrl: '../partials/anime_view.html',
+                controller: 'AnimeCtrl',
+                resolve: {
+                    anime: ['$stateParams', 'animeSrv', function($stateParams, animeSrv) {
+                        return animeSrv.get($stateParams.id);
+                    }]
+                }
             });
 
         $urlRouterProvider.otherwise('home');
@@ -56,7 +61,7 @@ app.controller('QueueCtrl',[
             if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
 
             if ($scope.animeToAdd) {
-                $scope.animeQueue.push({
+                animeSrv.create({
                     name: $scope.animeToAdd.name,
                     link: $scope.animeToAdd.link,
                     lastWatched: parseInt($scope.animeToAdd.lastWatched)
@@ -124,7 +129,33 @@ app.factory('animeSrv', [
 
         animeSrv.getAll = function() {
             return $http.get('/anime').success(function(data){
-                angular.copy(data, o.anime);
+                angular.copy(data, animeSrv.anime);
+            });
+        };
+
+        animeSrv.create = function(anime) {
+            return $http.post('/anime', anime).success(function(data){
+                animeSrv.anime.push(data);
+            });
+        };
+
+        animeSrv.nextEpisode = function(anime) {
+            return $http.put('/anime/' + anime._id + '/nextEpisode')
+                .success(function(data){
+                    anime.lastWatched += 1;
+                });
+        };
+
+        animeSrv.previousEpisode = function(anime) {
+            return $http.put('/anime/' + anime._id + '/previousEpisode')
+                .success(function(data){
+                    anime.lastWatched -= 1;
+                });
+        };
+
+        animeSrv.get = function(id) {
+            return $http.get('/anime/' + id).then(function(res){
+                return res.data;
             });
         };
 
@@ -133,18 +164,18 @@ app.factory('animeSrv', [
 ]);
 
 app.controller('AnimeCtrl', [
-   '$scope', '$stateParams', 'animeSrv',
-    function($scope, $stateParams, animeSrv) {
-        $scope.anime = animeSrv.anime[$stateParams.id];
+   '$scope', 'animeSrv', 'anime',
+    function($scope, animeSrv, anime) {
+        $scope.anime = anime;
 
         $scope.id = $stateParams.id;
 
         $scope.nextEpisode = function() {
-            $scope.anime.lastWatched = $scope.anime.lastWatched + 1;
+            animeSrv.nextEpisode($scope.anime);
         };
 
         $scope.previousEpisode = function() {
-            $scope.anime.lastWatched = $scope.anime.lastWatched - 1;
+            animeSrv.previousEpisode($scope.anime);
         };
     }
 ]);
