@@ -173,14 +173,13 @@ app.controller('AnimeCtrl', [
    '$scope', 'animeSrv', 'anime',
     function($scope, animeSrv, anime) {
         $scope.anime = anime;
-
         $scope.id = anime._id;
 
         $scope.getAnimeLink = function() {
             link = anime.link;
 
             if(link) {
-                link = link.replace('[#]', anime.lastWatched+1);
+                link = link.replace('[#]', anime.lastWatched);
             }
 
             return link;
@@ -193,5 +192,8 @@ app.controller('AnimeCtrl', [
         $scope.previousEpisode = function() {
             animeSrv.previousEpisode($scope.anime);
         };
+
+        // advance forward an episode whenever we get to this page
+        $scope.nextEpisode();
     }
 ]);
