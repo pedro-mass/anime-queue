@@ -70,6 +70,14 @@ app.controller('QueueCtrl',[
             }
         };
 
+        $scope.nextEpisode = function(anime) {
+            animeSrv.nextEpisode(anime);
+        };
+
+        $scope.previousEpisode = function(anime) {
+            animeSrv.previousEpisode(anime);
+        };
+
         var isValidAnimeInfo = function(anime) {
             result = false;
 

@@ -2,3 +2,8 @@
 - authentication
 - validation on anime add
 - validation holes
+
+
+
+DONE:
+5/22/15 - on queue page: add a way to easily advance/go back an episode

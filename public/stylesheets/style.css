@@ -51,3 +51,7 @@ body { padding-top: 50px; }
   text-decoration: underline;
   cursor:pointer;
 }
+
+.episodeActions {
+  font-size: 50%;
+}
