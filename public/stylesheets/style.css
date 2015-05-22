@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,6 +17,10 @@ body { padding-top: 50px; }
 
 #anime {
   height: 100%;
+}
+
+.test {
+  background-color: #00B7FF;
 }
 
 #anime object {
