@@ -14,61 +14,59 @@ router.get('/', function(req, res, next) {
 router.param('anime', function(req, res, next, id) {
   var query = Anime.findById(id);
 
-  query.exec(function (err, anime){
+  query.exec(function (err, animeModel){
     if (err) { return next(err); }
-    if (!anime) { return next(new Error('can\'t find anime')); }
+    if (!animeModel) { return next(new Error('can\'t find anime')); }
 
-    req.anime = anime;
+    req.animeModel = animeModel;
     return next();
   });
 });
 
 
 router.get('/anime', function(req, res, next) {
-  Anime.find(function(err, anime){
+  Anime.find(function(err, animeModel){
     if(err){ return next(err); }
 
-    res.json(anime);
+    res.json(animeModel);
   });
 });
 
 router.post('/anime', function(req, res, next) {
-  var anime = new Anime(req.body);
+  var animeModel = new Anime(req.body);
 
-  anime.save(function(err, anime){
+  animeModel.save(function(err, animeModel){
     if(err){ return next(err); }
 
-    res.json(anime);
+    res.json(animeModel);
   });
 });
 
 router.get('/anime/:anime', function(req, res) {
-  res.json(req.anime);
+  res.json(req.animeModel);
 });
 
 router.put('/anime/:anime/nextEpisode', function(req, res, next) {
-  req.anime.nextEpisode(function(err, anime){
+  req.animeModel.nextEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
-    res.json(anime);
+    res.json(animeModel);
   });
 });
 
 router.put('/anime/:anime/previousEpisode', function(req, res, next) {
-  req.anime.previousEpisode(function(err, anime){
+  req.animeModel.previousEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
-    res.json(anime);
+    res.json(animeModel);
   });
 });
 
 router.put('/anime/:anime/delete', function(req, res, next) {
-  console.log('made it to the router');
-
-  req.anime.delete(function(err, anime){
+  req.animeModel.delete(function(err, animeModel){
     if (err) { return next(err); }
 
-    res.json(anime);
+    //res.json(animeModel);
   });
 });
 

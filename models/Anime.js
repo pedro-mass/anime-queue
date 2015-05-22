@@ -17,8 +17,8 @@ AnimeSchema.methods.previousEpisode = function(cb) {
 }
 
 AnimeSchema.methods.delete = function(cb) {
-    this.lastWatched = 99;
-    this.save(cb);
+    this.remove();
+    //this.save(cb);
 }
 
 mongoose.model('Anime', AnimeSchema);

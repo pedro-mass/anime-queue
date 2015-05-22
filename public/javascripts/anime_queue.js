@@ -47,16 +47,6 @@ app.controller('QueueCtrl',[
     function($scope, animeSrv) {
         $scope.animeQueue = animeSrv.anime;
 
-        $scope.getAnimeLink = function(anime) {
-            link = anime.link;
-
-            if(link) {
-                link.replace('[#]', anime.lastWatched+1);
-            }
-
-            return link;
-        }
-
         $scope.addAnime = function() {
             if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
 
@@ -72,7 +62,12 @@ app.controller('QueueCtrl',[
         }
 
         $scope.deleteAnime = function(animeIndex) {
-            animeSrv.delete($scope.animeQueue[animeIndex]);
+            if (animeIndex > -1) {
+                animeSrv.delete($scope.animeQueue[animeIndex]);
+
+                // delete from scope as well
+                $scope.animeQueue.splice(animeIndex, 1);
+            }
         };
 
         var isValidAnimeInfo = function(anime) {
@@ -160,7 +155,7 @@ app.factory('animeSrv', [
         animeSrv.delete = function(anime) {
             return $http.put('/anime/' + anime._id + '/delete')
                 .success(function(data){
-                    //anime = {};
+                    anime = {};
                 });
         };
 
@@ -180,6 +175,16 @@ app.controller('AnimeCtrl', [
         $scope.anime = anime;
 
         $scope.id = anime._id;
+
+        $scope.getAnimeLink = function() {
+            link = anime.link;
+
+            if(link) {
+                link = link.replace('[#]', anime.lastWatched+1);
+            }
+
+            return link;
+        }
 
         $scope.nextEpisode = function() {
             animeSrv.nextEpisode($scope.anime);
