@@ -29,7 +29,7 @@ app.config([
         $stateProvider
             .state('anime', {
                 url: '/anime/{id}',
-                templateUrl: '../partials/anime_view.html',
+                templateUrl: '../partials/anime-view.html',
                 controller: 'AnimeCtrl',
                 resolve: {
                     anime: ['$stateParams', 'animeSrv', function($stateParams, animeSrv) {
