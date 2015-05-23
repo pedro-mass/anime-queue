@@ -1,6 +1,7 @@
 - authentication
 - validation on anime add
 - validation holes
+- on queue page: there's a bug where the add form will have lastWatched == 0
 
 
 
