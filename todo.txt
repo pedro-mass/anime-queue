@@ -1,5 +1,3 @@
-- on queue page: ability to edit anime
-- on queue page: condensed add form
 - authentication
 - validation on anime add
 - validation holes
@@ -7,6 +5,8 @@
 
 
 
-DONE:
+COMPLETED:
 5/22/15 - on queue page: add a way to easily advance/go back an episode
 5/22/15 - on anime view page: display the anime info somewhere
+5/22/15 - on queue page: ability to edit anime
+5/22/15 - on queue page: condensed add form
