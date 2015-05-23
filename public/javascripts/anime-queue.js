@@ -47,19 +47,53 @@ app.controller('QueueCtrl',[
     function($scope, animeSrv) {
         $scope.animeQueue = animeSrv.anime;
 
+        $scope.isFormVisible = false;
+
+        $scope.showForm = function(show) {
+            $scope.isFormVisible = show;
+
+            // Add is the default actions
+            $scope.formAction = 'Add';
+            $scope.formTitleAction = 'Add';
+        };
+
         $scope.addAnime = function() {
             if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
 
             if ($scope.animeToAdd) {
-                animeSrv.create({
-                    name: $scope.animeToAdd.name,
-                    link: $scope.animeToAdd.link,
-                    lastWatched: parseInt($scope.animeToAdd.lastWatched)
-                });
+                //check if the anime had an id
+                if ($scope.animeToAdd._id) {
+                    $scope.animeToAdd.lastWatched = $scope.animeToAdd.currentEpisode - 1;
+
+                    animeSrv.update($scope.animeToAdd);
+                } else {
+                    animeSrv.create({
+                        name: $scope.animeToAdd.name,
+                        link: $scope.animeToAdd.link,
+                        lastWatched: parseInt($scope.animeToAdd.lastWatched)
+                    });
+                }
             }
 
+            // reset form
             $scope.animeToAdd = {};
-        }
+            $scope.showForm(false);
+        };
+
+        $scope.editAnime = function(anime) {
+            $scope.showForm(true);
+
+            // change form/title actions for edit
+            $scope.formAction = 'Save';
+            $scope.formTitleAction = 'Edit';
+
+            //$scope.animeToAdd = angular.copy(anime);
+            $scope.animeToAdd = anime;
+
+            $scope.animeToAdd.currentEpisode = anime.lastWatched + 1;
+
+            //$scope.animeToAdd.lastWatched += 1;
+        };
 
         $scope.deleteAnime = function(animeIndex) {
             if (animeIndex > -1) {
@@ -94,20 +128,36 @@ app.controller('QueueCtrl',[
 
 
             return result;
-        }
+        };
 
         var cleanseAnimeInfo = function(anime) {
-            // make lastWatched an int
-            if (anime.lastWatched && anime.lastWatched != '') {
-                anime.lastWatched = parseInt(anime.lastWatched);
+            if(anime) {
+                // make lastWatched an int
+                if (anime.lastWatched && anime.lastWatched != '') {
+                    anime.lastWatched = parseInt(anime.lastWatched);
 
-                if (isNaN(anime.lastWatched)) {
+                    if (isNaN(anime.lastWatched) || anime.lastWatched < 0) {
+                        anime.lastWatched = 0;
+                    }
+                } else {
                     anime.lastWatched = 0;
                 }
-            } else {
-                anime.lastWatched = 0;
+
+                // make currentEpisode an int
+                if (anime.currentEpisode && anime.currentEpisode != '') {
+                    anime.currentEpisode = parseInt(anime.currentEpisode);
+
+                    if (isNaN(anime.currentEpisode) || anime.currentEpisode < 1) {
+                        anime.currentEpisode = 1;
+                    }
+                } else {
+                    anime.currentEpisode = 1;
+                }
             }
+
         }
+
+
     }
 ]);
 
@@ -145,6 +195,12 @@ app.factory('animeSrv', [
                 animeSrv.anime.push(data);
             });
         };
+
+        animeSrv.update = function(anime) {
+            return $http.put('/anime/' + anime._id, anime).success(function(data){
+                anime = angular.copy(data);
+            });
+        }
 
         animeSrv.nextEpisode = function(anime) {
             return $http.put('/anime/' + anime._id + '/nextEpisode')

@@ -23,7 +23,6 @@ router.param('anime', function(req, res, next, id) {
   });
 });
 
-
 router.get('/anime', function(req, res, next) {
   Anime.find(function(err, animeModel){
     if(err){ return next(err); }
@@ -43,6 +42,13 @@ router.post('/anime', function(req, res, next) {
 });
 
 router.get('/anime/:anime', function(req, res) {
+  res.json(req.animeModel);
+});
+
+router.put('/anime/:anime', function(req, res) {
+
+  req.animeModel.update(req.body);
+
   res.json(req.animeModel);
 });
 

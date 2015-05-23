@@ -13,7 +13,13 @@
                 <li><a href="#/anime/{{id}}" ng-click="previousEpisode()">Previous</a></li>
                 <li><a href="#/anime/{{id}}" ng-click="nextEpisode()">Next</a></li>
             </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{getAnimeLink();}}">{{anime.name}} - #{{anime.lastWatched}}</a></li>
+            </ul>
         </div><!--/.nav-collapse -->
+
+
     </div>
 </nav>
 

@@ -9,16 +9,23 @@ var AnimeSchema = new mongoose.Schema({
 AnimeSchema.methods.nextEpisode = function(cb) {
     this.lastWatched += 1;
     this.save(cb);
-}
+};
 
 AnimeSchema.methods.previousEpisode = function(cb) {
     this.lastWatched -= 1;
     this.save(cb);
-}
+};
+
+AnimeSchema.methods.update = function(updatedAnime, cb) {
+    this.name = updatedAnime.name;
+    this.link = updatedAnime.link;
+    this.lastWatched = updatedAnime.lastWatched;
+
+    this.save(cb);
+};
 
 AnimeSchema.methods.delete = function(cb) {
     this.remove();
-    //this.save(cb);
-}
+};
 
 mongoose.model('Anime', AnimeSchema);
