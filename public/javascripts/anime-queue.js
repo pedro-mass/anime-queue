@@ -52,32 +52,39 @@ app.controller('QueueCtrl',[
         $scope.showForm = function(show) {
             $scope.isFormVisible = show;
 
+            // clear out the object when we hide the form
+            if (!show) {
+                $scope.animeToAdd = null;
+            }
+
             // Add is the default actions
             $scope.formAction = 'Add';
             $scope.formTitleAction = 'Add';
         };
 
         $scope.addAnime = function() {
-            if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
+            if($scope.animeToAdd) {
+                if(!isValidAnimeInfo($scope.animeToAdd)) { return; }
 
-            if ($scope.animeToAdd) {
-                //check if the anime had an id
-                if ($scope.animeToAdd._id) {
-                    $scope.animeToAdd.lastWatched = $scope.animeToAdd.currentEpisode - 1;
+                if ($scope.animeToAdd) {
+                    //check if the anime had an id
+                    if ($scope.animeToAdd._id) {
+                        $scope.animeToAdd.lastWatched = $scope.animeToAdd.currentEpisode - 1;
 
-                    animeSrv.update($scope.animeToAdd);
-                } else {
-                    animeSrv.create({
-                        name: $scope.animeToAdd.name,
-                        link: $scope.animeToAdd.link,
-                        lastWatched: parseInt($scope.animeToAdd.lastWatched)
-                    });
+                        animeSrv.update($scope.animeToAdd);
+                    } else {
+                        animeSrv.create({
+                            name: $scope.animeToAdd.name,
+                            link: $scope.animeToAdd.link,
+                            lastWatched: parseInt($scope.animeToAdd.lastWatched)
+                        });
+                    }
                 }
-            }
 
-            // reset form
-            $scope.animeToAdd = {};
-            $scope.showForm(false);
+                // reset form
+                $scope.animeToAdd = {};
+                $scope.showForm(false);
+            }
         };
 
         $scope.editAnime = function(anime) {
@@ -87,12 +94,9 @@ app.controller('QueueCtrl',[
             $scope.formAction = 'Save';
             $scope.formTitleAction = 'Edit';
 
-            //$scope.animeToAdd = angular.copy(anime);
             $scope.animeToAdd = anime;
 
             $scope.animeToAdd.currentEpisode = anime.lastWatched + 1;
-
-            //$scope.animeToAdd.lastWatched += 1;
         };
 
         $scope.deleteAnime = function(animeIndex) {

@@ -1,7 +1,6 @@
 - validation on anime add
 - validation holes
 - authentication
-- on queue page: there's a bug where the add form will have lastWatched == 0
 - add notion of last episode
 - don't let episode # go below 0.
 - add ability to export. Similar to chrome bookmarks format
@@ -17,3 +16,4 @@ COMPLETED:
 5/22/15 - on anime view page: display the anime info somewhere
 5/22/15 - on queue page: ability to edit anime
 5/22/15 - on queue page: condensed add form
+5/25/15 - on queue page: there's a bug where the add form will have lastWatched == 0
