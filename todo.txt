@@ -2,6 +2,12 @@
 - validation holes
 - authentication
 - on queue page: there's a bug where the add form will have lastWatched == 0
+- add notion of last episode
+- don't let episode # go below 0.
+- add ability to export. Similar to chrome bookmarks format
+- add number format
+	- ex: 	http://www.animecartoon.tv/claymore-episode-02-english-dub/
+			http://www.animecartoon.tv/claymore-episode-[##]-english-dub/
 
 
 
