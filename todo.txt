@@ -7,6 +7,7 @@
 - add number format
 	- ex: 	http://www.animecartoon.tv/claymore-episode-02-english-dub/
 			http://www.animecartoon.tv/claymore-episode-[##]-english-dub/
+- on anime view page: figure out how to check to see if the page failed to load.
 
 
 
