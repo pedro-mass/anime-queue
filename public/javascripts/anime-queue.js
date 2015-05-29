@@ -260,8 +260,5 @@ app.controller('AnimeCtrl', [
         $scope.previousEpisode = function() {
             animeSrv.previousEpisode($scope.anime);
         };
-
-        // advance forward an episode whenever we get to this page
-        $scope.nextEpisode();
     }
 ]);

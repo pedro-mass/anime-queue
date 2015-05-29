@@ -32,7 +32,8 @@
                 <tr ng-repeat="anime in animeQueue">
                     <td class="text-center">
                         <span class="episodeActions btn" ng-click="previousEpisode(anime)">&lt;</span>
-                        <a href="#/anime/{{anime._id}}">{{anime.lastWatched + 1}}</a>
+                        <!-- Whenever I go to watch an episode, advance my lastWatched tracker-->
+                        <a href="#/anime/{{anime._id}}" ng-click="nextEpisode(anime)">{{anime.lastWatched + 1}}</a>
                         <span class="episodeActions btn" ng-click="nextEpisode(anime)">&gt;</span>
                     </td>
                     <td>
