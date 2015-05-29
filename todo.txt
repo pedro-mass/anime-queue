@@ -1,13 +1,13 @@
 - validation on anime add
 - validation holes
 - authentication
-- add notion of last episode
-- don't let episode # go below 0.
-- add ability to export. Similar to chrome bookmarks format
-- add number format
+- feature: add notion of last episode
+- validation: don't let episode # go below 0.
+- feature: add ability to export. Similar to chrome bookmarks format
+- feature: add number formatting on link
 	- ex: 	http://www.animecartoon.tv/claymore-episode-02-english-dub/
 			http://www.animecartoon.tv/claymore-episode-[##]-english-dub/
-- on anime view page: figure out how to check to see if the page failed to load.
+- feature: on anime view page: figure out how to check to see if the page failed to load.
 
 
 
