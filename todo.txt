@@ -8,10 +8,6 @@
 	- ex: 	http://www.animecartoon.tv/claymore-episode-02-english-dub/
 			http://www.animecartoon.tv/claymore-episode-[##]-english-dub/
 - on anime view page: figure out how to check to see if the page failed to load.
-- on anime view page: defect - refreshing the page pushes the episode count forward
-	-> one way to fix this is to add something to the scope on the queue page,
-	then clear it on view page. This way the view page can look for that variable
-	and decide if it should increment
 
 
 
@@ -22,3 +18,4 @@ COMPLETED:
 5/22/15 - on queue page: ability to edit anime
 5/22/15 - on queue page: condensed add form
 5/25/15 - on queue page: there's a bug where the add form will have lastWatched == 0
+5/29/15 - on anime view page: defect - refreshing the page pushes the episode count forward
