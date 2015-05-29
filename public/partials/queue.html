@@ -47,31 +47,60 @@
 
             <button ng-hide="isFormVisible" class="btn btn-primary btn-inverse" ng-click="showForm(true);">Add Anime</button>
 
-            <form ng-show="isFormVisible" id="newAnimeForm" ng-submit="addAnime();">
+            <form ng-show="isFormVisible"
+                  name="animeForm"
+                  id="newAnimeForm"
+                  ng-submit="addAnime();">
                 <h3>{{formTitleAction}} Anime</h3>
 
                 <div class="form-group">
                     <input type="text"
                            class="form-control"
                            placeholder="Name"
+                           name="name"
+                           required
                            ng-model="animeToAdd.name" />
+
+                    <div ng-if="animeForm.name.$dirty && animeForm.name.$invalid">
+                        A name for the Anime is required.
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text"
+                    <input type="url"
                            class="form-control"
                            placeholder="Link"
+                           name="link"
+                           required
+                           anime-link-validator
                            ng-model="animeToAdd.link" />
                 </div>
                 <div class="form-group">
-                    <input ng-show="formAction == 'Add'" type="text"
-                           class="form-control"
-                           placeholder="Last Episode # watched"
-                           ng-model="animeToAdd.lastWatched" />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input ng-show="formAction == 'Add'"
+                                   type="number"
+                                   class="form-control"
+                                   placeholder="Last Episode # watched"
+                                   name="lastWatched"
+                                   ng-model="animeToAdd.lastWatched" />
 
-                    <input ng-hide="formAction == 'Add'" type="text"
-                           class="form-control"
-                           placeholder="Episode #"
-                           ng-model="animeToAdd.currentEpisode" />
+                            <input ng-hide="formAction == 'Add'"
+                                   type="number"
+                                   class="form-control"
+                                   placeholder="Episode #"
+                                   name="currentEpisode"
+                                   ng-model="animeToAdd.currentEpisode" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="number"
+                                   class="form-control"
+                                   placeholder="Final Episode #"
+                                   name="finalEpisode"
+                                   ng-model="animeToAdd.finalEpisode" />
+                        </div>
+                        <!-- This is used by both -->
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-inverse">{{formAction}}</button>
                 <button class="btn btn-danger" ng-click="showForm(false)">Cancel</button>
