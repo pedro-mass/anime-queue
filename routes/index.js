@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
   res.render('index', {});
 });
 
+// API calls
 router.param('anime', function(req, res, next, id) {
   var query = Anime.findById(id);
 
