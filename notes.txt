@@ -1,0 +1,5 @@
+5/31/15
+I'm a little worried about the authentication scheme I'm following. It looks like it's making a common space for all
+users, with users having singular items in this space. This is different from what I want to do. I want each user to
+have their own space, and that they can only see their own items. I'm going to continue this to the end, and then decide
+what I'll need to tweak to have user spaces.
