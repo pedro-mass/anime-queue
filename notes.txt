@@ -3,3 +3,5 @@ I'm a little worried about the authentication scheme I'm following. It looks lik
 users, with users having singular items in this space. This is different from what I want to do. I want each user to
 have their own space, and that they can only see their own items. I'm going to continue this to the end, and then decide
 what I'll need to tweak to have user spaces.
+Currently, my document is the list of anime. My initial thoughts is that my document should change to be a User. This
+user would then have the list of anime, as well as any user info.
