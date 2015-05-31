@@ -117,7 +117,7 @@ app.controller('QueueCtrl',[
         };
 
         var isValidAnimeInfo = function(anime) {
-            result = false;
+            var result = false;
 
             cleanseAnimeInfo(anime);
 
@@ -244,14 +244,14 @@ app.controller('AnimeCtrl', [
         $scope.id = anime._id;
 
         $scope.getAnimeLink = function() {
-            link = anime.link;
+            var link = anime.link;
 
             if(link) {
                 link = link.replace('[#]', anime.lastWatched);
             }
 
             return link;
-        }
+        };
 
         $scope.nextEpisode = function() {
             animeSrv.nextEpisode($scope.anime);
