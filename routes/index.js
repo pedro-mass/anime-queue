@@ -35,7 +35,7 @@ router.get('/api/anime', function(req, res, next) {
   });
 });
 
-router.post('/api/anime', auth, function(req, res, next) {
+router.post('/api/anime', function(req, res, next) {
   var animeModel = new Anime(req.body);
 
   animeModel.save(function(err, animeModel){
@@ -45,18 +45,18 @@ router.post('/api/anime', auth, function(req, res, next) {
   });
 });
 
-router.get('/api/anime/:animeID', auth, function(req, res) {
+router.get('/api/anime/:animeID', function(req, res) {
   res.json(req.animeModel);
 });
 
-router.put('/api/anime/:animeID', auth, function(req, res) {
+router.put('/api/anime/:animeID', function(req, res) {
 
   req.animeModel.update(req.body);
 
   res.json(req.animeModel);
 });
 
-router.put('/api/anime/:animeID/nextEpisode', auth, function(req, res, next) {
+router.put('/api/anime/:animeID/nextEpisode', function(req, res, next) {
   req.animeModel.nextEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -64,7 +64,7 @@ router.put('/api/anime/:animeID/nextEpisode', auth, function(req, res, next) {
   });
 });
 
-router.put('/api/anime/:animeID/previousEpisode', auth, function(req, res, next) {
+router.put('/api/anime/:animeID/previousEpisode', function(req, res, next) {
   req.animeModel.previousEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -72,7 +72,7 @@ router.put('/api/anime/:animeID/previousEpisode', auth, function(req, res, next)
   });
 });
 
-router.put('/api/anime/:animeID/delete', auth, function(req, res, next) {
+router.put('/api/anime/:animeID/delete', function(req, res, next) {
   req.animeModel.delete(function(err, animeModel){
     if (err) { return next(err); }
 
