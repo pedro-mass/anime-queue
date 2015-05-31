@@ -2,13 +2,11 @@ var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
 
-
 var Anime = mongoose.model('Anime');
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', {});
 });
 
 router.param('anime', function(req, res, next, id) {
@@ -23,7 +21,7 @@ router.param('anime', function(req, res, next, id) {
   });
 });
 
-router.get('/anime', function(req, res, next) {
+router.get('/api/anime', function(req, res, next) {
   Anime.find(function(err, animeModel){
     if(err){ return next(err); }
 
@@ -31,7 +29,7 @@ router.get('/anime', function(req, res, next) {
   });
 });
 
-router.post('/anime', function(req, res, next) {
+router.post('/api/anime', function(req, res, next) {
   var animeModel = new Anime(req.body);
 
   animeModel.save(function(err, animeModel){
@@ -41,18 +39,18 @@ router.post('/anime', function(req, res, next) {
   });
 });
 
-router.get('/anime/:anime', function(req, res) {
+router.get('/api/anime/:anime', function(req, res) {
   res.json(req.animeModel);
 });
 
-router.put('/anime/:anime', function(req, res) {
+router.put('/api/anime/:anime', function(req, res) {
 
   req.animeModel.update(req.body);
 
   res.json(req.animeModel);
 });
 
-router.put('/anime/:anime/nextEpisode', function(req, res, next) {
+router.put('/api/anime/:anime/nextEpisode', function(req, res, next) {
   req.animeModel.nextEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -60,7 +58,7 @@ router.put('/anime/:anime/nextEpisode', function(req, res, next) {
   });
 });
 
-router.put('/anime/:anime/previousEpisode', function(req, res, next) {
+router.put('/api/anime/:anime/previousEpisode', function(req, res, next) {
   req.animeModel.previousEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -68,12 +66,18 @@ router.put('/anime/:anime/previousEpisode', function(req, res, next) {
   });
 });
 
-router.put('/anime/:anime/delete', function(req, res, next) {
+router.put('/api/anime/:anime/delete', function(req, res, next) {
   req.animeModel.delete(function(err, animeModel){
     if (err) { return next(err); }
 
     //res.json(animeModel);
   });
+});
+
+
+// Maybe have a catch all here?
+router.get('/*', function(req, res) {
+  res.redirect('/');
 });
 
 module.exports = router;
