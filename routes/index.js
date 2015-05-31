@@ -27,7 +27,7 @@ router.param('animeID', function(req, res, next, id) {
   });
 });
 
-router.get('/api/anime', auth, function(req, res, next) {
+router.get('/api/anime', function(req, res, next) {
   Anime.find(function(err, animeModel){
     if(err){ return next(err); }
 

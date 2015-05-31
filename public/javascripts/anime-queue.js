@@ -1,10 +1,10 @@
-$(document).ready(function() {
-    changeAnime("http://www.animeram.org/hajime-no-ippo/8");
-});
-
-function changeAnime(anime) {
-    $("#anime").html('<object data="' + anime + '"/>');
-}
+//$(document).ready(function() {
+//    changeAnime("http://www.animeram.org/hajime-no-ippo/8");
+//});
+//
+//function changeAnime(anime) {
+//    $("#anime").html('<object data="' + anime + '"/>');
+//}
 
 
 var app = angular.module('animeQueue', ['ui.router']);
@@ -24,19 +24,47 @@ app.config([
                         return animeSrv.getAll();
                     }]
                 }
-            });
+            })
 
-        $stateProvider
             .state('anime', {
                 url: '/anime/{id}',
-                templateUrl: '../partials/anime-view.html',
+                templateUrl: 'partials/anime-view.html',
                 controller: 'AnimeCtrl',
                 resolve: {
                     anime: ['$stateParams', 'animeSrv', function($stateParams, animeSrv) {
                         return animeSrv.get($stateParams.id);
                     }]
                 }
-            });
+            })
+
+            .state('login', {
+                url: '/login',
+                templateUrl: 'partials/login.html',
+                controller: 'AuthCtrl',
+                onEnter: [
+                    '$state', 'auth',
+                    function($state, auth) {
+                        if (auth.isLoggedIn()) {
+                            $state.go('home');
+                        }
+                    }
+                ]
+            })
+
+            .state('register', {
+                url: '/register',
+                templateUrl: 'partials/register.html',
+                controller: 'AuthCtrl',
+                onEnter: [
+                    '$state', 'auth',
+                    function($state, auth) {
+                        if (auth.isLoggedIn()) {
+                            $state.go('home');
+                        }
+                    }
+                ]
+            })
+        ;
 
         $urlRouterProvider.otherwise('home');
     }
@@ -260,5 +288,91 @@ app.controller('AnimeCtrl', [
         $scope.previousEpisode = function() {
             animeSrv.previousEpisode($scope.anime);
         };
+    }
+]);
+
+app.factory('auth', [
+    '$http', '$window',
+    function($http, $window) {
+        var auth = {};
+
+        auth.saveToken = function(token) {
+          $window.localStorage['anime-queue'] = token;
+        };
+
+        auth.getToken = function() {
+          return $window.localStorage['anime-queu'];
+        };
+
+        auth.isLoggedIn = function() {
+            var token = auth.getToken();
+
+            if (token) {
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload.exp > Date.now() / 1000;
+            } else {
+                return false;
+            }
+        };
+
+        auth.currentUser = function() {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload.username;
+            }
+        };
+
+        auth.register = function(user) {
+            return $http.post('/api/register', user).success(function(data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+        auth.logIn = function(user) {
+            return $http.post('/api/login', user).success(function(data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+        auth.logOut = function() {
+            $window.localStorage.removeItem('anime-queue');
+        };
+
+        return auth;
+    }
+]);
+
+app.controller('AuthCtrl', [
+   '$scope', '$state', 'auth',
+    function($scope, $state, auth) {
+        $scope.user = {};
+
+        $scope.register = function() {
+            auth.register($scope.user).error(function(error) {
+               $scope.error = error;
+            }).then(function() {
+               $state.go('home');
+            });
+        };
+
+        $scope.logIn = function() {
+          auth.logIn($scope.user).error(function(error) {
+              $scope.error = error;
+          }).then(function() {
+              $state.go('home');
+          });
+        };
+    }
+]);
+
+app.controller('NavCtrl', [
+   '$scope', 'auth',
+    function($scope, auth) {
+        $scope.isLoggedIn = auth.isLoggedIn();
+        $scope.currentUser = auth.currentUser();
+        $scope.logOut = auth.logOut;
     }
 ]);
