@@ -1,26 +1,30 @@
-<div class="page-header">
-    <h1>Anime Queue</h1>
-</div>
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
+        <div class="page-header">
+            <h1>Anime Queue</h1>
+        </div>
 
-<div ng-show="erro" class="alert alert-danger row">
-    <span>{{error.message}}</span>
-</div>
+        <div ng-show="error" class="alert alert-danger row">
+            <span>{{error.message}}</span>
+        </div>
 
-<form ng-submit="register()"
-      style="margin-top:30px;">
-    <h3>Register</h3>
+        <form ng-submit="register()"
+              style="margin-top:30px;">
+            <h3>Register</h3>
 
-    <div class="form-group">
-        <input type="text"
-               class="form-control"
-               placeholder="Username"
-               ng-model="user.username" />
+            <div class="form-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Username"
+                       ng-model="user.username" />
+            </div>
+            <div class="form-group">
+                <input type="password"
+                       class="form-control"
+                       placeholder="Password"
+                       ng-model="user.password" />
+            </div>
+            <button type="submit" class="btn btn-primary">Register</button>
+        </form>
     </div>
-    <div class="form-group">
-        <input type="password"
-               class="form-control"
-               placeholder="Password"
-               ng-model="user.password" />
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-</form>
+</div>

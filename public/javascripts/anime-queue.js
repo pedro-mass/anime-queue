@@ -1,28 +1,32 @@
-//$(document).ready(function() {
-//    changeAnime("http://www.animeram.org/hajime-no-ippo/8");
-//});
-//
-//function changeAnime(anime) {
-//    $("#anime").html('<object data="' + anime + '"/>');
-//}
-
-
 var app = angular.module('animeQueue', ['ui.router']);
 
 app.config([
     '$stateProvider',
     '$urlRouterProvider',
     function($stateProvider, $urlRouterProvider) {
+        var defaultRoute = 'home';
 
         $stateProvider
             .state('home', {
                 url: '/home',
+                templateUrl: 'partials/home.html',
+                controller: 'HomeCtrl',
+                data: {
+                    activePage: 'home'
+                }
+            })
+
+            .state('queue', {
+                url: '/queue',
                 templateUrl: 'partials/queue.html',
                 controller: 'QueueCtrl',
                 resolve: {
                     postPromise: ['animeSrv', function(animeSrv){
                         return animeSrv.getAll();
                     }]
+                },
+                data: {
+                    activePage: 'queue'
                 }
             })
 
@@ -34,6 +38,9 @@ app.config([
                     anime: ['$stateParams', 'animeSrv', function($stateParams, animeSrv) {
                         return animeSrv.get($stateParams.id);
                     }]
+                },
+                data: {
+                    activePage: 'animeView'
                 }
             })
 
@@ -42,13 +49,16 @@ app.config([
                 templateUrl: 'partials/login.html',
                 controller: 'AuthCtrl',
                 onEnter: [
-                    '$state', 'auth',
-                    function($state, auth) {
-                        if (auth.isLoggedIn()) {
+                    '$state', 'authSrv',
+                    function($state, authSrv) {
+                        if (authSrv.isLoggedIn()) {
                             $state.go('home');
                         }
                     }
-                ]
+                ],
+                data: {
+                    activePage: 'login'
+                }
             })
 
             .state('register', {
@@ -56,17 +66,32 @@ app.config([
                 templateUrl: 'partials/register.html',
                 controller: 'AuthCtrl',
                 onEnter: [
-                    '$state', 'auth',
-                    function($state, auth) {
-                        if (auth.isLoggedIn()) {
+                    '$state', 'authSrv',
+                    function($state, authSrv) {
+                        if (authSrv.isLoggedIn()) {
                             $state.go('home');
                         }
                     }
-                ]
+                ],
+                data: {
+                    activePage: 'register'
+                }
             })
         ;
 
-        $urlRouterProvider.otherwise('home');
+        // if authenticated, default to queue
+        if (true) {
+            defaultRoute = 'queue'
+        }
+
+        $urlRouterProvider.otherwise(defaultRoute);
+    }
+]);
+
+app.controller('HomeCtrl', [
+   '$scope', '$state',
+    function($scope, $state) {
+
     }
 ]);
 
@@ -188,8 +213,6 @@ app.controller('QueueCtrl',[
             }
 
         }
-
-
     }
 ]);
 
@@ -291,7 +314,7 @@ app.controller('AnimeCtrl', [
     }
 ]);
 
-app.factory('auth', [
+app.factory('authSrv', [
     '$http', '$window',
     function($http, $window) {
         var auth = {};
@@ -346,12 +369,12 @@ app.factory('auth', [
 ]);
 
 app.controller('AuthCtrl', [
-   '$scope', '$state', 'auth',
-    function($scope, $state, auth) {
+   '$scope', '$state', 'authSrv',
+    function($scope, $state, authSrv) {
         $scope.user = {};
 
         $scope.register = function() {
-            auth.register($scope.user).error(function(error) {
+            authSrv.register($scope.user).error(function(error) {
                $scope.error = error;
             }).then(function() {
                $state.go('home');
@@ -359,7 +382,7 @@ app.controller('AuthCtrl', [
         };
 
         $scope.logIn = function() {
-          auth.logIn($scope.user).error(function(error) {
+            authSrv.logIn($scope.user).error(function(error) {
               $scope.error = error;
           }).then(function() {
               $state.go('home');
@@ -369,10 +392,24 @@ app.controller('AuthCtrl', [
 ]);
 
 app.controller('NavCtrl', [
-   '$scope', 'auth',
-    function($scope, auth) {
-        $scope.isLoggedIn = auth.isLoggedIn();
-        $scope.currentUser = auth.currentUser();
-        $scope.logOut = auth.logOut;
+   '$scope', 'authSrv', '$state',
+    function($scope, authSrv, $state) {
+        $scope.isLoggedIn = authSrv.isLoggedIn();
+        $scope.currentUser = authSrv.currentUser();
+        $scope.logOut = authSrv.logOut;
+
+        $scope.isNormalNav = function() {
+            var result = true;
+
+            // Not normal Nav when we are viewing an anime
+            if ($state.current.data
+                    && $state.current.data.activePage
+                    && $state.current.data.activePage == 'animeView') {
+                result = false;
+            }
+
+            return result;
+            //return $state.current.data.activePage != 'animeView';
+        };
     }
 ]);

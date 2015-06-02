@@ -1,118 +1,92 @@
-<div>
-    <div class="container">
-        <div class="col-md-8 col-md-offset-2">
+<div class="container">
+    <div class="col-md-8 col-md-offset-2">
 
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                            <span class="sr-only">Toggle navigation</span>
-                            <!--<span class="icon-bar"></span>-->
-                        </button>
-                        <a class="navbar-brand" href="#home">Anime Queue</a>
-                    </div>
-                    <div id="navbar" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav">
-                            <!--<li><a href="#">about</a></li>-->
-                        </ul>
-
-                        <ul class="nav navbar-nav navbar-right" ng-controller="NavCtrl">
-                            <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-                            <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-                            <li ng-hide="isLoggedIn()"><a href="/#/login">Log In</a></li>
-                            <li ng-hide="isLoggedIn()"><a href="/#/register">Register</a></li>
-                        </ul>
-                    </div><!--/.nav-collapse -->
-                </div>
-            </nav>
-
-            <div class="page-header">
-                <h1>Anime Queue</h1>
-            </div>
-
-            <table class="table table-striped" id="animeQueue">
-                <tr>
-                    <th class="col-md-2 text-center">Epi #</th>
-                    <th class="col-md-1 text-center"></th>
-                    <th>Anime</th>
-                </tr>
-                <tr ng-repeat="anime in animeQueue">
-                    <td class="text-center">
-                        <span class="episodeActions btn" ng-click="previousEpisode(anime)">&lt;</span>
-                        <!-- Whenever I go to watch an episode, advance my lastWatched tracker-->
-                        <a href="#/anime/{{anime._id}}" ng-click="nextEpisode(anime)">{{anime.lastWatched + 1}}</a>
-                        <span class="episodeActions btn" ng-click="nextEpisode(anime)">&gt;</span>
-                    </td>
-                    <td>
-                        <div class="animeActions">
-                            <span ng-click="editAnime(anime);">edit</span>
-                            <span ng-click="deleteAnime($index);">delete</span>
-                        </div>
-                    </td>
-                    <td>{{anime.name}}</td>
-                </tr>
-            </table>
-
-            <button ng-hide="isFormVisible" class="btn btn-primary btn-inverse" ng-click="showForm(true);">Add Anime</button>
-
-            <form ng-show="isFormVisible"
-                  name="animeForm"
-                  id="newAnimeForm"
-                  ng-submit="addAnime();">
-                <h3>{{formTitleAction}} Anime</h3>
-
-                <div class="form-group">
-                    <input type="text"
-                           class="form-control"
-                           placeholder="Name"
-                           name="name"
-                           required
-                           ng-model="animeToAdd.name" />
-
-                    <div ng-if="animeForm.name.$dirty && animeForm.name.$invalid">
-                        A name for the Anime is required.
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="url"
-                           class="form-control"
-                           placeholder="Link"
-                           name="link"
-                           required
-                           anime-link-validator
-                           ng-model="animeToAdd.link" />
-                </div>
-                <div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <input ng-show="formAction == 'Add'"
-                                   type="number"
-                                   class="form-control"
-                                   placeholder="Last Episode # watched"
-                                   name="lastWatched"
-                                   ng-model="animeToAdd.lastWatched" />
-
-                            <input ng-hide="formAction == 'Add'"
-                                   type="number"
-                                   class="form-control"
-                                   placeholder="Episode #"
-                                   name="currentEpisode"
-                                   ng-model="animeToAdd.currentEpisode" />
-                        </div>
-
-                        <div class="col-md-6">
-                            <input type="number"
-                                   class="form-control"
-                                   placeholder="Final Episode #"
-                                   name="finalEpisode"
-                                   ng-model="animeToAdd.finalEpisode" />
-                        </div>
-                        <!-- This is used by both -->
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary btn-inverse">{{formAction}}</button>
-                <button class="btn btn-danger" ng-click="showForm(false)">Cancel</button>
-            </form>
+        <div class="page-header">
+            <h1>Anime Queue</h1>
         </div>
+
+        <table class="table table-striped" id="animeQueue">
+            <tr>
+                <th class="col-md-2 text-center">Epi #</th>
+                <th class="col-md-1 text-center"></th>
+                <th>Anime</th>
+            </tr>
+            <tr ng-repeat="anime in animeQueue">
+                <td class="text-center">
+                    <span class="episodeActions btn" ng-click="previousEpisode(anime)">&lt;</span>
+                    <!-- Whenever I go to watch an episode, advance my lastWatched tracker-->
+                    <a href="#/anime/{{anime._id}}" ng-click="nextEpisode(anime)">{{anime.lastWatched + 1}}</a>
+                    <span class="episodeActions btn" ng-click="nextEpisode(anime)">&gt;</span>
+                </td>
+                <td>
+                    <div class="animeActions">
+                        <span ng-click="editAnime(anime);">edit</span>
+                        <span ng-click="deleteAnime($index);">delete</span>
+                    </div>
+                </td>
+                <td>{{anime.name}}</td>
+            </tr>
+        </table>
+
+        <button ng-hide="isFormVisible" class="btn btn-primary btn-inverse" ng-click="showForm(true);">Add Anime</button>
+
+        <form ng-show="isFormVisible"
+              name="animeForm"
+              id="newAnimeForm"
+              ng-submit="addAnime();">
+            <h3>{{formTitleAction}} Anime</h3>
+
+            <div class="form-group">
+                <input type="text"
+                       class="form-control"
+                       placeholder="Name"
+                       name="name"
+                       required
+                       ng-model="animeToAdd.name" />
+
+                <div ng-if="animeForm.name.$dirty && animeForm.name.$invalid">
+                    A name for the Anime is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="url"
+                       class="form-control"
+                       placeholder="Link"
+                       name="link"
+                       required
+                       anime-link-validator
+                       ng-model="animeToAdd.link" />
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
+                        <input ng-show="formAction == 'Add'"
+                               type="number"
+                               class="form-control"
+                               placeholder="Last Episode # watched"
+                               name="lastWatched"
+                               ng-model="animeToAdd.lastWatched" />
+
+                        <input ng-hide="formAction == 'Add'"
+                               type="number"
+                               class="form-control"
+                               placeholder="Episode #"
+                               name="currentEpisode"
+                               ng-model="animeToAdd.currentEpisode" />
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="number"
+                               class="form-control"
+                               placeholder="Final Episode #"
+                               name="finalEpisode"
+                               ng-model="animeToAdd.finalEpisode" />
+                    </div>
+                    <!-- This is used by both -->
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-inverse">{{formAction}}</button>
+            <button class="btn btn-danger" ng-click="showForm(false)">Cancel</button>
+        </form>
     </div>
 </div>
