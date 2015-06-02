@@ -97,7 +97,7 @@ router.post('/api/register', function(req, res, next){
   });
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/api/login', function(req, res, next) {
   if (!req.body.username || !req.body.password) {
     return res.status(400).json({ message: 'Please fill out all fields'});
   }

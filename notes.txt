@@ -1,3 +1,7 @@
+6/1/15
+Figure out what's going on with the logIN. It looks like the API calls are succeeding, but it's not pulling something
+back correctly and it seems, from the UI, that you're not logged in.
+
 5/31/15
 I'm a little worried about the authentication scheme I'm following. It looks like it's making a common space for all
 users, with users having singular items in this space. This is different from what I want to do. I want each user to

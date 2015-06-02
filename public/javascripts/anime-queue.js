@@ -368,6 +368,7 @@ app.factory('authSrv', [
     }
 ]);
 
+// Handles logIn and Register
 app.controller('AuthCtrl', [
    '$scope', '$state', 'authSrv',
     function($scope, $state, authSrv) {
@@ -377,7 +378,7 @@ app.controller('AuthCtrl', [
             authSrv.register($scope.user).error(function(error) {
                $scope.error = error;
             }).then(function() {
-               $state.go('home');
+               $state.go('queue');
             });
         };
 
@@ -385,18 +386,19 @@ app.controller('AuthCtrl', [
             authSrv.logIn($scope.user).error(function(error) {
               $scope.error = error;
           }).then(function() {
-              $state.go('home');
+              $state.go('queue');
           });
         };
     }
 ]);
 
+// Handles the nav bar
 app.controller('NavCtrl', [
    '$scope', 'authSrv', '$state',
     function($scope, authSrv, $state) {
         $scope.isLoggedIn = authSrv.isLoggedIn();
         $scope.currentUser = authSrv.currentUser();
-        $scope.logOut = authSrv.logOut;
+        $scope.logOut = authSrv.logOut();
 
         $scope.isNormalNav = function() {
             var result = true;
