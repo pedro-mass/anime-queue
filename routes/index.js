@@ -30,8 +30,6 @@ router.param('animeID', function(req, res, next, id) {
 });
 
 router.get('/api/anime', auth, function(req, res, next) {
-  console.log(req.payload);
-
   if (!req.payload) {
     return next(new Error('no auth info found'));
   }
@@ -42,36 +40,63 @@ router.get('/api/anime', auth, function(req, res, next) {
     if (err) { return next(err); }
     if (!userModel) { return next(new Error('can\'t find user to look anime for')); }
 
-    userModel.populate('anime', function(err, animeList) {
+    userModel.populate('anime', function(err, userModel) {
       if (err) { return next(err); }
 
-      res.json(animeList);
+      res.json(userModel.anime);
     });
   });
 });
 
-router.post('/api/anime', function(req, res, next) {
-  var animeModel = new Anime(req.body);
+router.post('/api/anime', auth, function(req, res, next) {
+  if (!req.payload) { return next(new Error('no auth info found')); }
 
-  animeModel.save(function(err, animeModel){
-    if(err){ return next(err); }
+  var query = User.findById(req.payload._id);
+  query.exec(function (err, userModel){
+    if (err) { return next(err); }
+    if (!userModel) { return next(new Error('can\'t find user')); }
 
-    res.json(animeModel);
+    var animeModel = new Anime(req.body);
+    animeModel.user = userModel;
+
+    // Save the anime
+    animeModel.save(function(err, animeModel){
+      if(err){ return next(err); }
+
+      // update and save the user
+      userModel.anime.push(animeModel);
+      userModel.save(function(err, userModel) {
+        if(err) { return next(err); }
+
+        res.json(animeModel);
+      });
+    });
   });
 });
 
-router.get('/api/anime/:animeID', function(req, res) {
+router.get('/api/anime/:animeID', auth, function(req, res) {
+  if (req.payload._id != req.animeModel.user) {
+    return res.status(401).send('Unauthorized request: this anime isn\'t owned by the user.' );
+  }
+
   res.json(req.animeModel);
 });
 
-router.put('/api/anime/:animeID', function(req, res) {
+router.put('/api/anime/:animeID', auth, function(req, res) {
+  if (req.payload._id != req.animeModel.user) {
+    return res.status(401).send('Unauthorized request: this anime isn\'t owned by the user.' );
+  }
 
   req.animeModel.update(req.body);
 
   res.json(req.animeModel);
 });
 
-router.put('/api/anime/:animeID/nextEpisode', function(req, res, next) {
+router.put('/api/anime/:animeID/nextEpisode', auth, function(req, res, next) {
+  if (req.payload._id != req.animeModel.user) {
+    return res.status(401).send('Unauthorized request: this anime isn\'t owned by the user.' );
+  }
+
   req.animeModel.nextEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -79,7 +104,11 @@ router.put('/api/anime/:animeID/nextEpisode', function(req, res, next) {
   });
 });
 
-router.put('/api/anime/:animeID/previousEpisode', function(req, res, next) {
+router.put('/api/anime/:animeID/previousEpisode', auth, function(req, res, next) {
+  if (req.payload._id != req.animeModel.user) {
+    return res.status(401).send('Unauthorized request: this anime isn\'t owned by the user.' );
+  }
+
   req.animeModel.previousEpisode(function(err, animeModel){
     if (err) { return next(err); }
 
@@ -87,11 +116,31 @@ router.put('/api/anime/:animeID/previousEpisode', function(req, res, next) {
   });
 });
 
-router.put('/api/anime/:animeID/delete', function(req, res, next) {
+router.put('/api/anime/:animeID/delete', auth, function(req, res, next) {
+  if (req.payload._id != req.animeModel.user) {
+    return res.status(401).send('Unauthorized request: this anime isn\'t owned by the user.' );
+  }
+
   req.animeModel.delete(function(err, animeModel){
     if (err) { return next(err); }
 
-    //res.json(animeModel);
+    var query = User.findById(req.payload._id);
+    query.exec(function (err, userModel){
+      if (err) { return next(err); }
+      if (!userModel) { return next(new Error('can\'t find user')); }
+
+      // delete anime from the user
+      for(i=0; i<userModel.anime.length; i++) {
+        if (animeModel.anime[i] == req.animeModel._id) {
+          animeModel.anime.splice(i, 1);
+          break;
+        }
+      }
+
+      userModel.save(function(err, userModel) {
+        if(err) { return next(err); }
+      });
+    });
   });
 });
 

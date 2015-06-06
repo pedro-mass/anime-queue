@@ -6,10 +6,8 @@ var UserSchema = new mongoose.Schema({
     username: {type: String, lowercase: true, unique: true},
     hash: String,
     salt: String,
-
     anime: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Anime' }]
 });
-
 
 UserSchema.methods.setPassword = function(password){
     this.salt = crypto.randomBytes(16).toString('hex');
@@ -22,7 +20,6 @@ UserSchema.methods.validPassword = function(password) {
 
     return this.hash === hash;
 };
-
 
 var tokenSecret = 'SECRET';
 UserSchema.methods.generateJWT = function() {
