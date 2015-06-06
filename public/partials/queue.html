@@ -43,10 +43,6 @@
                        name="name"
                        required
                        ng-model="animeToAdd.name" />
-
-                <div ng-if="animeForm.name.$dirty && animeForm.name.$invalid">
-                    A name for the Anime is required.
-                </div>
             </div>
             <div class="form-group">
                 <input type="url"
@@ -58,31 +54,20 @@
                        ng-model="animeToAdd.link" />
             </div>
             <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
-                        <input ng-show="formAction == 'Add'"
-                               type="number"
-                               class="form-control"
-                               placeholder="Last Episode # watched"
-                               name="lastWatched"
-                               ng-model="animeToAdd.lastWatched" />
+                <div>
+                    <input ng-show="formAction == 'Add'"
+                           type="number"
+                           class="form-control"
+                           placeholder="Last Episode # watched"
+                           name="lastWatched"
+                           ng-model="animeToAdd.lastWatched" />
 
-                        <input ng-hide="formAction == 'Add'"
-                               type="number"
-                               class="form-control"
-                               placeholder="Episode #"
-                               name="currentEpisode"
-                               ng-model="animeToAdd.currentEpisode" />
-                    </div>
-
-                    <div class="col-md-6">
-                        <input type="number"
-                               class="form-control"
-                               placeholder="Final Episode #"
-                               name="finalEpisode"
-                               ng-model="animeToAdd.finalEpisode" />
-                    </div>
-                    <!-- This is used by both -->
+                    <input ng-hide="formAction == 'Add'"
+                           type="number"
+                           class="form-control"
+                           placeholder="Episode #"
+                           name="currentEpisode"
+                           ng-model="animeToAdd.currentEpisode" />
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-inverse">{{formAction}}</button>
