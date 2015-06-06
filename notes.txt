@@ -2,6 +2,8 @@
 I GOT AUTH WORKING! I messed up on the initialization of the Nav Ctrl, and was logging out with each page load. I fixed
 that issue, and then added auth to the Queue page...and it's working! Now I just have to add it to all the other anime
 endpoints.
+Finished. Everything on the anime side looks to be authenticated. I might have to do some user tasks, like changing a
+password, or recovering a password.
 
 6/1/15
 Figure out what's going on with the logIN. It looks like the API calls are succeeding, but it's not pulling something
