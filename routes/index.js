@@ -7,7 +7,9 @@ var jwt = require('express-jwt');
 var Anime = mongoose.model('Anime');
 var User = mongoose.model('User');
 
-var auth = jwt({ secret: 'SECRET', userProperty: 'payload' });
+var tokenSecret = 'SECRET';
+
+var auth = jwt({ secret: tokenSecret, userProperty: 'payload' });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,7 +29,11 @@ router.param('animeID', function(req, res, next, id) {
   });
 });
 
-router.get('/api/anime', function(req, res, next) {
+router.get('/api/anime', auth, function(req, res, next) {
+  // Use the auth to get the anime
+  var decoded = jwt.decode(req.headers.token, tokenSecret);
+  console.log(decoded);
+
   Anime.find(function(err, animeModel){
     if(err){ return next(err); }
 
@@ -103,7 +109,13 @@ router.post('/api/login', function(req, res, next) {
   }
 
   passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
+    if (err) {
+      console.log('Didnt authenticate');
+
+      return next(err);
+    }
+
+    console.log('NO ERRORS');
 
     if (user) {
       return res.json({ token: user.generateJWT() });

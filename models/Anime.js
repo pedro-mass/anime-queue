@@ -3,7 +3,9 @@ var mongoose = require('mongoose');
 var AnimeSchema = new mongoose.Schema({
     name: String,
     link: String,
-    lastWatched: {type: Number, default: 0}
+    lastWatched: {type: Number, default: 0},
+
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
 AnimeSchema.methods.nextEpisode = function(cb) {

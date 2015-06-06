@@ -1,5 +1,7 @@
 var app = angular.module('animeQueue', ['ui.router']);
 
+var appName = 'anime-queue';
+
 app.config([
     '$stateProvider',
     '$urlRouterProvider',
@@ -80,11 +82,89 @@ app.config([
         ;
 
         // if authenticated, default to queue
-        if (true) {
+        if (false) {
             defaultRoute = 'queue'
         }
 
         $urlRouterProvider.otherwise(defaultRoute);
+    }
+]);
+
+app.factory('authSrv', [
+    '$http', '$window',
+    function($http, $window) {
+        var auth = {};
+
+        auth.saveToken = function(token) {
+            $window.localStorage[appName] = token;
+        };
+
+        auth.getToken = function() {
+            return $window.localStorage[appName];
+        };
+
+        auth.isLoggedIn = function() {
+            var token = auth.getToken();
+
+            if (token) {
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload.exp > Date.now() / 1000;
+            } else {
+                return false;
+            }
+        };
+
+        auth.currentUser = function() {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload.username;
+            }
+        };
+
+        auth.register = function(user) {
+            return $http.post('/api/register', user).success(function(data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+        auth.logIn = function(user) {
+            return $http.post('/api/login', user).success(function(data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+        auth.logOut = function() {
+            $window.localStorage.removeItem('anime-queue');
+        };
+
+        return auth;
+    }
+]);
+
+// Handles logIn and Register
+app.controller('AuthCtrl', [
+    '$scope', '$state', 'authSrv',
+    function($scope, $state, authSrv) {
+        $scope.user = {};
+
+        $scope.register = function() {
+            authSrv.register($scope.user).error(function(error) {
+                $scope.error = error;
+            }).then(function() {
+                $state.go('home');
+            });
+        };
+
+        $scope.logIn = function() {
+            authSrv.logIn($scope.user).error(function(error) {
+                $scope.error = error;
+            }).then(function() {
+                $state.go('queue');
+            });
+        };
     }
 ]);
 
@@ -217,8 +297,8 @@ app.controller('QueueCtrl',[
 ]);
 
 app.factory('animeSrv', [
-    '$http',
-    function($http) {
+    '$http', 'authSrv',
+    function($http, authSrv) {
         var animeSrv = {
             anime: [
                 {
@@ -240,7 +320,9 @@ app.factory('animeSrv', [
         };
 
         animeSrv.getAll = function() {
-            return $http.get('/api/anime').success(function(data){
+            return $http.get('/api/anime', {
+                token: authSrv.getToken()
+            }).success(function(data) {
                 angular.copy(data, animeSrv.anime);
             });
         };
@@ -310,84 +392,6 @@ app.controller('AnimeCtrl', [
 
         $scope.previousEpisode = function() {
             animeSrv.previousEpisode($scope.anime);
-        };
-    }
-]);
-
-app.factory('authSrv', [
-    '$http', '$window',
-    function($http, $window) {
-        var auth = {};
-
-        auth.saveToken = function(token) {
-          $window.localStorage['anime-queue'] = token;
-        };
-
-        auth.getToken = function() {
-          return $window.localStorage['anime-queu'];
-        };
-
-        auth.isLoggedIn = function() {
-            var token = auth.getToken();
-
-            if (token) {
-                var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-                return payload.exp > Date.now() / 1000;
-            } else {
-                return false;
-            }
-        };
-
-        auth.currentUser = function() {
-            if (auth.isLoggedIn()) {
-                var token = auth.getToken();
-                var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-                return payload.username;
-            }
-        };
-
-        auth.register = function(user) {
-            return $http.post('/api/register', user).success(function(data) {
-                auth.saveToken(data.token);
-            });
-        };
-
-        auth.logIn = function(user) {
-            return $http.post('/api/login', user).success(function(data) {
-                auth.saveToken(data.token);
-            });
-        };
-
-        auth.logOut = function() {
-            $window.localStorage.removeItem('anime-queue');
-        };
-
-        return auth;
-    }
-]);
-
-// Handles logIn and Register
-app.controller('AuthCtrl', [
-   '$scope', '$state', 'authSrv',
-    function($scope, $state, authSrv) {
-        $scope.user = {};
-
-        $scope.register = function() {
-            authSrv.register($scope.user).error(function(error) {
-               $scope.error = error;
-            }).then(function() {
-               $state.go('queue');
-            });
-        };
-
-        $scope.logIn = function() {
-            authSrv.logIn($scope.user).error(function(error) {
-              $scope.error = error;
-          }).then(function() {
-              $state.go('queue');
-          });
         };
     }
 ]);
