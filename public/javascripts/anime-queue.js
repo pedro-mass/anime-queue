@@ -81,11 +81,6 @@ app.config([
             })
         ;
 
-        // if authenticated, default to queue
-        if (false) {
-            defaultRoute = 'queue'
-        }
-
         $urlRouterProvider.otherwise(defaultRoute);
     }
 ]);
@@ -103,10 +98,10 @@ app.factory('authSrv', [
             return $window.localStorage[appName];
         };
 
-        auth.isLoggedIn = function() {
+        auth.isLoggedIn = function(){
             var token = auth.getToken();
 
-            if (token) {
+            if(token){
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
                 return payload.exp > Date.now() / 1000;
@@ -115,8 +110,8 @@ app.factory('authSrv', [
             }
         };
 
-        auth.currentUser = function() {
-            if (auth.isLoggedIn()) {
+        auth.currentUser = function(){
+            if(auth.isLoggedIn()){
                 var token = auth.getToken();
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
@@ -124,20 +119,20 @@ app.factory('authSrv', [
             }
         };
 
-        auth.register = function(user) {
-            return $http.post('/api/register', user).success(function(data) {
+        auth.register = function(user){
+            return $http.post('/api/register', user).success(function(data){
                 auth.saveToken(data.token);
             });
         };
 
-        auth.logIn = function(user) {
-            return $http.post('/api/login', user).success(function(data) {
+        auth.logIn = function(user){
+            return $http.post('/api/login', user).success(function(data){
                 auth.saveToken(data.token);
             });
         };
 
         auth.logOut = function() {
-            $window.localStorage.removeItem('anime-queue');
+            $window.localStorage.removeItem(appName);
         };
 
         return auth;
@@ -152,6 +147,7 @@ app.controller('AuthCtrl', [
 
         $scope.register = function() {
             authSrv.register($scope.user).error(function(error) {
+                console.log(error);
                 $scope.error = error;
             }).then(function() {
                 $state.go('home');
@@ -321,7 +317,7 @@ app.factory('animeSrv', [
 
         animeSrv.getAll = function() {
             return $http.get('/api/anime', {
-                token: authSrv.getToken()
+                headers: { Authorization: 'Bearer ' + authSrv.getToken() }
             }).success(function(data) {
                 angular.copy(data, animeSrv.anime);
             });
@@ -400,9 +396,13 @@ app.controller('AnimeCtrl', [
 app.controller('NavCtrl', [
    '$scope', 'authSrv', '$state',
     function($scope, authSrv, $state) {
-        $scope.isLoggedIn = authSrv.isLoggedIn();
-        $scope.currentUser = authSrv.currentUser();
-        $scope.logOut = authSrv.logOut();
+        $scope.isLoggedIn = authSrv.isLoggedIn;
+        $scope.currentUser = authSrv.currentUser;
+        $scope.logOut = function() {
+            authSrv.logOut();
+
+            $state.go('home');
+        };
 
         $scope.isNormalNav = function() {
             var result = true;

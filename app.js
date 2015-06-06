@@ -12,8 +12,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 mongoose.connect('mongodb://localhost/anime');
-require('./models/Anime');
 require('./models/Users');
+require('./models/Anime');
 
 require('./config/passport');
 

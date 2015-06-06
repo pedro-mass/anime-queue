@@ -30,14 +30,23 @@ router.param('animeID', function(req, res, next, id) {
 });
 
 router.get('/api/anime', auth, function(req, res, next) {
-  // Use the auth to get the anime
-  var decoded = jwt.decode(req.headers.token, tokenSecret);
-  console.log(decoded);
+  console.log(req.payload);
 
-  Anime.find(function(err, animeModel){
-    if(err){ return next(err); }
+  if (!req.payload) {
+    return next(new Error('no auth info found'));
+  }
 
-    res.json(animeModel);
+  var query = User.findById(req.payload._id);
+
+  query.exec(function (err, userModel){
+    if (err) { return next(err); }
+    if (!userModel) { return next(new Error('can\'t find user to look anime for')); }
+
+    userModel.populate('anime', function(err, animeList) {
+      if (err) { return next(err); }
+
+      res.json(animeList);
+    });
   });
 });
 
@@ -88,37 +97,31 @@ router.put('/api/anime/:animeID/delete', function(req, res, next) {
 
 // API calls - authentication
 router.post('/api/register', function(req, res, next){
-  if (!req.body.username || !req.body.password) {
-    return res.status(400).json({ message: 'Please fill out all fields'});
+  if(!req.body.username || !req.body.password){
+    return res.status(400).json({message: 'Please fill out all fields'});
   }
 
   var user = new User();
   user.username = req.body.username;
   user.setPassword(req.body.password);
 
-  user.save(function(err) {
-    if (err) { return next(err); }
+  user.save(function (err){
+    if(err){ return next(err); }
 
-    return res.json({ token: user.generateJWT() });
+    return res.json({token: user.generateJWT()})
   });
 });
 
-router.post('/api/login', function(req, res, next) {
-  if (!req.body.username || !req.body.password) {
-    return res.status(400).json({ message: 'Please fill out all fields'});
+router.post('/api/login', function(req, res, next){
+  if(!req.body.username || !req.body.password){
+    return res.status(400).json({message: 'Please fill out all fields'});
   }
 
-  passport.authenticate('local', function(err, user, info) {
-    if (err) {
-      console.log('Didnt authenticate');
+  passport.authenticate('local', function(err, user, info){
+    if(err){ return next(err); }
 
-      return next(err);
-    }
-
-    console.log('NO ERRORS');
-
-    if (user) {
-      return res.json({ token: user.generateJWT() });
+    if(user){
+      return res.json({token: user.generateJWT()});
     } else {
       return res.status(401).json(info);
     }
