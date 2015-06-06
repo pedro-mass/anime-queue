@@ -4,6 +4,9 @@ that issue, and then added auth to the Queue page...and it's working! Now I just
 endpoints.
 Finished. Everything on the anime side looks to be authenticated. I might have to do some user tasks, like changing a
 password, or recovering a password.
+I'm not sure how much more I want to add. I know for sure I need to flush out the user sections, but I don't think I
+want to put in that much effort to this hand rolled MEAN implementation.
+Perhaps it's team to rebuild using the lessons learned here, and pick a MEAN framework like MeanJS or MeanIO
 
 6/1/15
 Figure out what's going on with the logIN. It looks like the API calls are succeeding, but it's not pulling something
