@@ -1,17 +1,3 @@
-- validation on anime add
-- validation holes
-- feature: add notion of last episode
-- validation: don't let episode # go below 0.
-- feature: add ability to export. Similar to chrome bookmarks format
-- feature: add number formatting on link
-	- ex: 	http://www.animecartoon.tv/claymore-episode-02-english-dub/
-			http://www.animecartoon.tv/claymore-episode-[##]-english-dub/
-- feature: on anime view page: figure out how to check to see if the page failed to load.
-- features: on queue page: ability to order list
-
-
-
-
 COMPLETED:
 05/22/15 - on queue page: add a way to easily advance/go back an episode
 05/22/15 - on anime view page: display the anime info somewhere
@@ -20,3 +6,5 @@ COMPLETED:
 05/25/15 - on queue page: there's a bug where the add form will have lastWatched == 0
 05/29/15 - on anime view page: defect - refreshing the page pushes the episode count forward
 06/06/15 - authentication
+06/08/15 - transitioned to a trello board. - https://trello.com/b/apv6hEfU/anime-queue
+

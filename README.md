@@ -10,3 +10,6 @@ Welcome to the Anime Queue.
 
 
 P.S. I still have to figure out the legality of what I'm doing, but for now I'm just focusing on functionality and experience.
+
+
+I have moved the tracking of later tasks/bugs to trello - https://trello.com/b/apv6hEfU/anime-queue
