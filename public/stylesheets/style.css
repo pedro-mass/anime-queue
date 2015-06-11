@@ -56,6 +56,11 @@ body { padding-top: 50px; }
   font-size: 50%;
 }
 
+.disappear {
+  opacity: 0;
+  cursor: default;
+}
+
 /* Used to make the actions only appear when hovering over the row*/
 /*tr td div.animeActions {*/
   /*opacity: 0;*/

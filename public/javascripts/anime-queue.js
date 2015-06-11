@@ -202,11 +202,7 @@ app.controller('QueueCtrl',[
 
                         animeSrv.update($scope.animeToAdd);
                     } else {
-                        animeSrv.create({
-                            name: $scope.animeToAdd.name,
-                            link: $scope.animeToAdd.link,
-                            lastWatched: parseInt($scope.animeToAdd.lastWatched)
-                        });
+                        animeSrv.create($scope.animeToAdd);
                     }
                 }
 
@@ -243,6 +239,16 @@ app.controller('QueueCtrl',[
 
         $scope.previousEpisode = function(anime) {
             animeSrv.previousEpisode(anime);
+        };
+
+        $scope.getEpisodeDisplay = function(anime) {
+            result = anime.lastWatched + 1;
+
+            if (anime.finalEpisode) {
+                result += '/' + anime.finalEpisode;
+            }
+
+            return result;
         };
 
         var isValidAnimeInfo = function(anime) {
@@ -314,8 +320,6 @@ app.factory('animeSrv', [
                 }
             ]
         };
-
-
 
         var getAuthHeader = function() {
             return {
