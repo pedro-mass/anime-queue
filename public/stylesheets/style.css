@@ -55,3 +55,12 @@ body { padding-top: 50px; }
 .episodeActions {
   font-size: 50%;
 }
+
+/* Used to make the actions only appear when hovering over the row*/
+/*tr td div.animeActions {*/
+  /*opacity: 0;*/
+/*}*/
+
+/*tr:hover td div.animeActions {*/
+  /*opacity: 1;*/
+/*}*/
