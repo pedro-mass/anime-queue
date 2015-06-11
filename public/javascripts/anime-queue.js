@@ -315,51 +315,55 @@ app.factory('animeSrv', [
             ]
         };
 
-        var authHeader = {
-            headers: { Authorization: 'Bearer ' + authSrv.getToken() }
+
+
+        var getAuthHeader = function() {
+            return {
+                headers: { Authorization: 'Bearer ' + authSrv.getToken() }
+            }
         };
 
         animeSrv.getAll = function() {
-            return $http.get('/api/anime', authHeader).success(function(data) {
+            return $http.get('/api/anime', getAuthHeader()).success(function(data) {
                 angular.copy(data, animeSrv.anime);
             });
         };
 
         animeSrv.create = function(anime) {
-            return $http.post('/api/anime', anime, authHeader).success(function(data){
+            return $http.post('/api/anime', anime, getAuthHeader()).success(function(data){
                 animeSrv.anime.push(data);
             });
         };
 
         animeSrv.update = function(anime) {
-            return $http.put('/api/anime/' + anime._id, anime, authHeader).success(function(data){
+            return $http.put('/api/anime/' + anime._id, anime, getAuthHeader()).success(function(data){
                 anime = angular.copy(data);
             });
         };
 
         animeSrv.nextEpisode = function(anime) {
-            return $http.put('/api/anime/' + anime._id + '/nextEpisode', null, authHeader)
+            return $http.put('/api/anime/' + anime._id + '/nextEpisode', null, getAuthHeader())
                 .success(function(data){
                     anime.lastWatched += 1;
                 });
         };
 
         animeSrv.previousEpisode = function(anime) {
-            return $http.put('/api/anime/' + anime._id + '/previousEpisode', null, authHeader)
+            return $http.put('/api/anime/' + anime._id + '/previousEpisode', null, getAuthHeader())
                 .success(function(data){
                     anime.lastWatched -= 1;
                 });
         };
 
         animeSrv.delete = function(anime) {
-            return $http.put('/api/anime/' + anime._id + '/delete', null, authHeader)
+            return $http.put('/api/anime/' + anime._id + '/delete', null, getAuthHeader())
                 .success(function(data){
                     anime = {};
                 });
         };
 
         animeSrv.get = function(id) {
-            return $http.get('/api/anime/' + id, authHeader).then(function(res){
+            return $http.get('/api/anime/' + id, getAuthHeader()).then(function(res){
                 return res.data;
             });
         };
