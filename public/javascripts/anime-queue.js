@@ -251,6 +251,16 @@ app.controller('QueueCtrl',[
             return result;
         };
 
+        $scope.isAnimeCompleted = function(anime) {
+            console.log(anime);
+
+            if (anime.finalEpisode) {
+                return anime.lastWatched+1 >= anime.finalEpisode;
+            } else {
+                return false;
+            }
+        };
+
         var isValidAnimeInfo = function(anime) {
             var result = false;
 
