@@ -147,7 +147,6 @@ app.controller('AuthCtrl', [
 
         $scope.register = function() {
             authSrv.register($scope.user).error(function(error) {
-                console.log(error);
                 $scope.error = error;
             }).then(function() {
                 $state.go('home');
@@ -252,8 +251,6 @@ app.controller('QueueCtrl',[
         };
 
         $scope.isAnimeCompleted = function(anime) {
-            console.log(anime);
-
             if (anime.finalEpisode) {
                 return anime.lastWatched+1 >= anime.finalEpisode;
             } else {
