@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 
 //mongoose.connect('mongodb://localhost/anime');
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://heroku_52vx3l5p:libubdigm5ej84988finkod5l3@ds041821.mongolab.com:41821/heroku_52vx3l5p');
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/anime');
 
 require('./models/Users');
 require('./models/Anime');
