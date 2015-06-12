@@ -22,10 +22,22 @@ app.config([
                 url: '/queue',
                 templateUrl: 'partials/queue.html',
                 controller: 'QueueCtrl',
+                onEnter: [
+                    '$state', 'authSrv',
+                    function($state, authSrv) {
+                        if (!authSrv.isLoggedIn()) {
+                            $state.go('home');
+                        }
+                    }
+                ],
                 resolve: {
-                    postPromise: ['animeSrv', function(animeSrv){
-                        return animeSrv.getAll();
-                    }]
+                    postPromise: [
+                        'animeSrv', 'authSrv',
+                        function(animeSrv, authSrv){
+                            if (authSrv.isLoggedIn()) {
+                                return animeSrv.getAll();
+                            }
+                        }]
                 },
                 data: {
                     activePage: 'queue'
