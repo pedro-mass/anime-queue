@@ -261,6 +261,13 @@ app.controller('QueueCtrl',[
             }
         };
 
+        $scope.episodeDiff = function(anime) {
+            var finalEpisode = anime.finalEpisode || 0;
+
+            //return finalEpisode - anime.lastWatched;
+            return anime.lastWatched - finalEpisode;
+        };
+
         var isValidAnimeInfo = function(anime) {
             var result = false;
 

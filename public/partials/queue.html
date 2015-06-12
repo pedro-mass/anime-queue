@@ -11,7 +11,7 @@
                 <th class="col-md-1 text-center"></th>
                 <th>Anime</th>
             </tr>
-            <tr ng-repeat="anime in animeQueue | orderBy:isAnimeCompleted">
+            <tr ng-repeat="anime in animeQueue | orderBy:[isAnimeCompleted, episodeDiff]">
                 <td class="text-center">
                     <span class="episodeActions btn" ng-click="previousEpisode(anime)" ng-hide="anime.lastWatched < 1">&lt;</span>
                     <span class="episodeActions btn disappear" ng-show="anime.lastWatched < 1">&lt;</span>
@@ -24,9 +24,9 @@
 
                     <span class="episodeActions btn"
                           ng-click="nextEpisode(anime)"
-                          ng-hide="anime.finalEpisode && anime.lastWatched+1 >= anime.finalEpisode">&gt;</span>
+                          ng-hide="isAnimeCompleted(anime)">&gt;</span>
                     <span class="episodeActions btn disappear"
-                          ng-show="anime.finalEpisode && anime.lastWatched+1 >= anime.finalEpisode">&gt;</span>
+                          ng-show="isAnimeCompleted(anime)">&gt;</span>
                 </td>
                 <td>
                     <div class="animeActions">
