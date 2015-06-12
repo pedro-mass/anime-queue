@@ -11,7 +11,9 @@ var app = express();
 var mongoose = require('mongoose');
 var passport = require('passport');
 
-mongoose.connect('mongodb://localhost/anime');
+//mongoose.connect('mongodb://localhost/anime');
+mongoose.connect('mongodb://heroku_52vx3l5p:libubdigm5ej84988finkod5l3@ds041821.mongolab.com:41821/heroku_52vx3l5p');
+
 require('./models/Users');
 require('./models/Anime');
 
