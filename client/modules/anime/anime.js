@@ -1,4 +1,4 @@
-var module = angular.module('anime', ['ui.router']);
+var module = angular.module('anime', ['ui.router', 'ngResource']);
 
 module.config([
   '$stateProvider', '$urlRouterProvider',
