@@ -2,12 +2,12 @@ var module = angular.module('auth');
 
 // Handles logIn and Register
 module.controller('AuthCtrl', [
-  '$scope', '$state', 'authSrv',
-  function($scope, $state, authSrv) {
+  '$scope', '$state', 'AuthService',
+  function($scope, $state, AuthService) {
     $scope.user = {};
 
     $scope.register = function() {
-      authSrv.register($scope.user).error(function(error) {
+      AuthService.register($scope.user).error(function(error) {
         $scope.error = error;
       }).then(function() {
         $state.go('home');
@@ -15,7 +15,7 @@ module.controller('AuthCtrl', [
     };
 
     $scope.logIn = function() {
-      authSrv.logIn($scope.user).error(function(error) {
+      AuthService.logIn($scope.user).error(function(error) {
         $scope.error = error;
       }).then(function() {
         $state.go('queue');

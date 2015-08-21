@@ -2,12 +2,12 @@ var module = angular.module('core');
 
 // Handles the nav bar
 module.controller('NavCtrl', [
-  '$scope', 'authSrv', '$state',
-  function($scope, authSrv, $state) {
-    $scope.isLoggedIn = authSrv.isLoggedIn;
-    $scope.currentUser = authSrv.currentUser;
+  '$scope', 'AuthService', '$state',
+  function($scope, AuthService, $state) {
+    $scope.isLoggedIn = AuthService.isLoggedIn;
+    $scope.currentUser = AuthService.currentUser;
     $scope.logOut = function() {
-      authSrv.logOut();
+      AuthService.logOut();
 
       $state.go('home');
     };

@@ -1,8 +1,8 @@
 var module = angular.module('anime');
 
 module.factory('animeSrv', [
-  '$http', 'authSrv',
-  function($http, authSrv) {
+  '$http', 'AuthService',
+  function($http, AuthService) {
     var animeSrv = {
       anime: [{
         name: "dbz kai",
@@ -22,7 +22,7 @@ module.factory('animeSrv', [
     var getAuthHeader = function() {
       return {
         headers: {
-          Authorization: 'Bearer ' + authSrv.getToken()
+          Authorization: 'Bearer ' + AuthService.getToken()
         }
       };
     };

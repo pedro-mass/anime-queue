@@ -1,55 +1,92 @@
 var module = angular.module('auth');
 
-module.factory('authSrv', [
-  '$http', '$window',
-  function($http, $window) {
-    var auth = {};
+module.factory('AuthService', [
+  '$http', 'AuthTokenService',
+  function($http, AuthTokenService) {
+    var service = {};
 
-    auth.saveToken = function(token) {
-      $window.localStorage.token = token;
-    };
-
-    auth.getToken = function() {
-      return $window.localStorage.token;
-    };
-
-    auth.isLoggedIn = function() {
-      var token = auth.getToken();
+    service.isGuest = function(token) {
+      // if they don't pass in a token, find it
+      // might do double look ups if a token is undefined to begin with
+      if (token === undefined) {
+        token = AuthTokenService.getToken();
+      }
 
       if (token) {
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
+        var payload = AuthTokenService.getPayload(token);
 
-        return payload.exp > Date.now() / 1000;
+        // check if guest is logged in
+        if (payload.guest) {
+          return true;
+        }
+      }
+
+      return false;
+    };
+
+    service.isLoggedIn = function(token) {
+      // if they don't pass in a token, find it
+      // might do double look ups if a token is undefined to begin with
+      if (token === undefined) {
+        token = AuthTokenService.getToken();
+      }
+
+      if (token) {
+        var payload = AuthTokenService.getPayload(token);
+
+        // check if guest
+        if (payload.guest) {
+          return false;
+        }
+
+        if (payload.exp === undefined || payload.exp > Date.now() / 1000) {
+          return true;
+        } else {
+          // the token has expired, remove it
+          AuthTokenService.setToken();
+
+          return false;
+        }
       } else {
         return false;
       }
     };
 
-    auth.currentUser = function() {
-      if (auth.isLoggedIn()) {
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
+    service.currentUser = function() {
+      var token = AuthTokenService.getToken();
+
+      if (auth.isLoggedIn(token)) {
+        var payload = AuthTokenService.getPayload(token);
 
         return payload.username;
       }
     };
 
-    auth.register = function(user) {
-      return $http.post('/api/register', user).success(function(data) {
-        auth.saveToken(data.token);
-      });
+    service.register = function(user) {
+      return $http.post('/api/register', user)
+        .success(function(response) {
+          AuthTokenService.setToken(response.token);
+        });
     };
 
-    auth.logIn = function(user) {
-      return $http.post('/api/login', user).success(function(data) {
-        auth.saveToken(data.token);
-      });
+    service.registerGuest = function() {
+      return $http.post('/api/registerGuest')
+        .success(function(response) {
+          AuthTokenService.setToken(response.token);
+        });
     };
 
-    auth.logOut = function() {
-      $window.localStorage.removeItem('token');
+    service.logIn = function(user) {
+      return $http.post('/api/login', user)
+        .success(function(response) {
+          AuthTokenService.setToken(response.token);
+        });
     };
 
-    return auth;
+    service.logOut = function() {
+      AuthTokenService.setToken();
+    };
+
+    return service;
   }
 ]);

@@ -1,8 +1,9 @@
-var app = angular.module('animeQueue', ['ui.router']);
+var app = angular.module('animeQueue',
+  ['ui.router', 'core', 'auth', 'anime']);
 
 app.config([
-  '$stateProvider','$urlRouterProvider',
-  function($stateProvider, $urlRouterProvider) {
+  '$stateProvider','$urlRouterProvider', '$httpProvider', 'AuthInterceptorService',
+  function($stateProvider, $urlRouterProvider, $httpProvider, AuthInterceptorService) {
     var defaultRoute = 'home';
 
     $stateProvider
@@ -13,5 +14,8 @@ app.config([
       })
 
     $urlRouterProvider.otherwise(defaultRoute);
+
+    // attach our auth interceptor to the http requests
+    $httpProvider.interceptors.push('AuthInterceptorService');
   }
 ]);
