@@ -1,0 +1,9 @@
+{
+  "name": "checkit",
+  "dependencies": {
+    "angular": "~1.4.3",
+    "bootstrap-css-only": "~3.3.4",
+    "angular-resource": "~1.4.3",
+    "angular-ui-router": "~0.2.15"
+  }
+}

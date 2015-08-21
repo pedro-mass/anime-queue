@@ -1,4 +1,8 @@
-.idea/*
-npm-debug.log
+*.log
 node_modules/*
+
+.idea/*
 .DS_Store
+
+client/assets/lib
+client/*.min.*
