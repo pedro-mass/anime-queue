@@ -6,19 +6,19 @@ gulp.task('default', ['build']);
 
 gulp.task('build', ['build-js', 'build-css']);
 
-var paths = {
+var filePaths = {
   js: 'client/modules/**/*.js',
-  cs: 'client/css/**/*.css'
+  css: 'client/assets/css/**/*.css'
 }
 
 gulp.task('jslint' , function() {
-  return gulp.src(paths[js])
+  return gulp.src(filePaths.js)
     .pipe(plugins.jshint())
     .pipe(plugins.jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('build-js', ['jslint'], function() {
-  return gulp.src(paths[js])
+  return gulp.src(filePaths.js)
     .pipe(plugins.sourcemaps.init())  // process the original sources
       .pipe(plugins.concat('scripts.min.js'))
       .pipe(gutil.env.type === 'production' ? plugins.ugilify() : gutil.noop())
@@ -27,13 +27,13 @@ gulp.task('build-js', ['jslint'], function() {
 });
 
 gulp.task('csslint', function() {
-  return gulp.src(paths[css])
+  return gulp.src(filePaths.css)
     .pipe(plugins.csslint())
     .pipe(plugins.csslint.reporter());
 });
 
 gulp.task('build-css', ['csslint'], function() {
-  return gulp.src(paths[css])
+  return gulp.src(filePaths.css)
     .pipe(plugins.sourcemaps.init())  // process the original sources
       .pipe(plugins.concatCss('main.min.css'))
       .pipe(gutil.env.type === 'production' ? plugins.cssmin() : gutil.noop())
@@ -44,6 +44,6 @@ gulp.task('build-css', ['csslint'], function() {
 gulp.task('lint', ['csslint', 'jslint']);
 
 gulp.task('watch', function() {
-  gulp.watch(paths[js], ['build-js']);
-  gulp.watch(paths[css], ['build-css']);
+  gulp.watch(filePaths.js, ['build-js']);
+  gulp.watch(filePaths.css, ['build-css']);
 });
