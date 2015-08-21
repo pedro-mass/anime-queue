@@ -12,8 +12,8 @@ module.exports = function(app) {
 		.put(UserController.verifyToken, AnimeController.update)
 		.delete(UserController.verifyToken, AnimeController.destroy);
 
-	app.put('/api/anime/:animeID/nextEpisode', AnimeController.updateEpisode(1));
-	app.put('/api/anime/:animeID/previousEpisode', AnimeController.updateEpisode(-1));
+	app.put('/api/anime/:animeID/nextEpisode', AnimeController.nextEpisode);
+	app.put('/api/anime/:animeID/previousEpisode', AnimeController.previousEpisode);
 
 	app.param('animeId', AnimeController.animeById);
 

@@ -11,18 +11,6 @@
 <body ng-app="animeQueue">
 	<div class="row">
 
-    <div class="page-header"  ng-controller="MainController">
-      <div id="profileActions" class="pull-right">
-        <div id="login" ng-if="!isLoggedIn()">
-          <a href="#/login">Login</a> | <a href="#/register">Register</a>
-        </div>
-        <div id="profile" ng-if="isLoggedIn()">
-          <button class="btn btn-info" ng-click="logOut()">Log Out</button>
-        </div>
-      </div>
-      <h1 id="appName" ng-click="go('#/checkit')">CheckIt</h1>
-    </div>
-
     <ui-view></ui-view>
 
 	</div>

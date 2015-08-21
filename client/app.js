@@ -2,8 +2,8 @@ var app = angular.module('animeQueue',
   ['ui.router', 'core', 'auth', 'anime']);
 
 app.config([
-  '$stateProvider','$urlRouterProvider', '$httpProvider', 'AuthInterceptorService',
-  function($stateProvider, $urlRouterProvider, $httpProvider, AuthInterceptorService) {
+  '$stateProvider','$urlRouterProvider', '$httpProvider',
+  function($stateProvider, $urlRouterProvider, $httpProvider) {
     var defaultRoute = 'home';
 
     $stateProvider
@@ -11,7 +11,7 @@ app.config([
         url: '/home',
         templateUrl: 'modules/core/templates/home.html',
         controller: 'HomeCtrl'
-      })
+      });
 
     $urlRouterProvider.otherwise(defaultRoute);
 

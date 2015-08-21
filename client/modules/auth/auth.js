@@ -1,4 +1,4 @@
-var module = angular.module('auth', []);
+var module = angular.module('auth', ['ui.router']);
 
 module.config([
   '$stateProvider', '$urlRouterProvider',

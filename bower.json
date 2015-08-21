@@ -1,5 +1,5 @@
 {
-  "name": "checkit",
+  "name": "anime-queue",
   "dependencies": {
     "angular": "~1.4.3",
     "bootstrap-css-only": "~3.3.4",

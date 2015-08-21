@@ -7,7 +7,7 @@ gulp.task('default', ['build']);
 gulp.task('build', ['build-js', 'build-css']);
 
 var filePaths = {
-  js: 'client/modules/**/*.js',
+  js: ['client/app.js', 'client/modules/**/*.js'],
   css: 'client/assets/css/**/*.css'
 }
 
